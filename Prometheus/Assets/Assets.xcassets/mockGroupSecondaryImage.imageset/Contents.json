@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "sports-persons-running-people.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
