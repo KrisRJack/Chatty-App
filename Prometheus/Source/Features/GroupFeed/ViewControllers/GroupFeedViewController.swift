@@ -15,21 +15,15 @@ protocol GroupFeedNavigationDelegate {
 
 final class GroupFeedViewController: UITableViewController {
     
-    private var viewModel: GroupFeedViewModel!
     public var navigationDelegate: GroupFeedNavigationDelegate?
     
     
     // MARK: - Init
     
     
-    init(viewModel vm: GroupFeedViewModel) {
-        viewModel = vm
+    init() {
         super.init(nibName: nil, bundle: nil)
-        viewModel.reloadData = {
-            self.tableView.reloadData()
-        }
-        viewModel.presentErrorMessage = ({ self.navigationDelegate?.presentErrorMessage(error: $0) })
-        viewModel.loadInitialBatch()
+        
     }
     
     
@@ -44,7 +38,6 @@ final class GroupFeedViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
-        addRefreshControlToTableView()
         tableView.separatorStyle = .none
         tableView.separatorInset = .zero
         tableView.allowsSelection = false
@@ -64,11 +57,6 @@ final class GroupFeedViewController: UITableViewController {
     
     
     // MARK: - Objective C Functions
-    
-    
-    @objc private func pullToRefresh() {
-        viewModel.loadNewerBatch()
-    }
     
     
     @objc private func didTapLeftNavBarItem() {
@@ -99,15 +87,7 @@ final class GroupFeedViewController: UITableViewController {
             action: #selector(didTapLeftNavBarItem)
         )
         
-        navigationItem.titleView = HashTagView(text: viewModel.navigationTitle, fontSize: 20)
-    }
-    
-    
-    private func addRefreshControlToTableView() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-        viewModel.endRefreshing = ({ refreshControl.endRefreshing() })
+        navigationItem.titleView = HashTagView(text: "nyc-running-group", fontSize: 20)
     }
     
     
@@ -119,19 +99,17 @@ extension GroupFeedViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
+        return 1
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection
+        return 100
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = viewModel.viewModelForCell(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
-        (cell as? PostCell)?.configure(with: viewModel)
         return cell
     }
     

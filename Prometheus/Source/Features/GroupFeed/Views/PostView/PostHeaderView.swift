@@ -84,6 +84,10 @@ class PostHeaderView: UIView {
     
     init() {
         super.init(frame: .zero)
+        
+        displayNameLabel.text = "Kris Jackson"
+        usernameLabel.text = "KrisRJack • 12h"
+        
         addSubviews([
             profileStackView,
             moreButton
@@ -105,15 +109,6 @@ class PostHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Configure View Model
-    
-    
-    public func configure(with viewModel: PostHeaderViewModel) {
-        displayNameLabel.text =  viewModel.headerString
-        usernameLabel.text = viewModel.subHeaderString
     }
     
 }

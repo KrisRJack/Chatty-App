@@ -9,8 +9,6 @@ import UIKit
 
 final class PostFooterView: UIView {
     
-    public var viewModel: PostFooterViewModel?
-    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             commentButton,
@@ -68,6 +66,9 @@ final class PostFooterView: UIView {
     
     init() {
         super.init(frame: .zero)
+        likeButton.text = "8K"
+        repostButton.text = "30"
+        commentButton.text = "56"
         fill(with: stackView, insets: UIEdgeInsets(top: 12, left: 20, bottom: -12, right: -20))
     }
     
@@ -80,7 +81,7 @@ final class PostFooterView: UIView {
     
     
     @objc private func likeButtonPressed() {
-        viewModel?.likeButtonTapped()
+        likeButton.isSelected = !likeButton.isSelected
     }
     
     
@@ -96,28 +97,6 @@ final class PostFooterView: UIView {
     
     @objc private func shareButtonPressed() {
         // TODO: Implement
-    }
-    
-    
-    // MARK: - Configure View Model
-    
-    
-    public func configure(with viewModel: PostFooterViewModel) {
-        self.viewModel = viewModel
-
-        viewModel.likeCountStringValue = ({ self.likeButton.text = $0 })
-        viewModel.repostCountStringValue = ({ self.repostButton.text = $0 })
-        viewModel.commentCountStringValue = ({ self.commentButton.text = $0 })
-
-        viewModel.likeButtonSelectedState = ({ self.likeButton.isSelected = $0 })
-        viewModel.repostButtonSelectedState = ({ self.repostButton.isSelected = $0 })
-        viewModel.commentButtonSelectedState = ({ self.commentButton.isSelected = $0 })
-
-        viewModel.addObserverToLikeButtonSelectedState = ({ self.likeButton.isSelected })
-        viewModel.addObserverToRepostButtonSelectedState = ({ self.repostButton.isSelected })
-        viewModel.addObserverToCommentButtonSelectedState = ({ self.commentButton.isSelected })
-
-        viewModel.loadInitialData()
     }
     
 }

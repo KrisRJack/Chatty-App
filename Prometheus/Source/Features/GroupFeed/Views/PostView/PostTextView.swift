@@ -1,5 +1,5 @@
 //
-//  PostContentView.swift
+//  PostTextView.swift
 //  Prometheus
 //
 //  Created by Kristopher Jackson on 12/4/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PostContentView: UIView {
+final class PostTextView: UIView {
     
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -21,18 +21,10 @@ final class PostContentView: UIView {
         super.init(frame: .zero)
         fill(with: label, spacing: 20)
         backgroundColor = .secondarySystemBackground
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Configure with View Model
-    
-    
-    public func configure(with viewModel: PostContentViewModel) {
-        let attributedString = NSMutableAttributedString(string: viewModel.textContent)
+        
+        let attributedString = NSMutableAttributedString(
+            string: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id volutpat lacus laoreet non."
+        )
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         attributedString.addAttribute(
@@ -41,6 +33,11 @@ final class PostContentView: UIView {
             range: NSMakeRange(0, attributedString.length)
         )
         label.attributedText = attributedString
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }
