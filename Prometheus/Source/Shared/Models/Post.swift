@@ -6,7 +6,6 @@
 //
 
 import FirebaseFirestore
-import Foundation
 import Tagged
 
 class Post {
@@ -20,6 +19,9 @@ class Post {
     let text: String!
     let priority: Int!
     let timestamp: Date!
+    
+    let repostID: Post.ID?
+    let repostGroupID: Group.ID?
     
     var numOfLikes: Int!
     var numOfReposts: Int!
@@ -45,6 +47,11 @@ class Post {
         return reference.collection(.comments)
     }
     
+    var repostedReference: DocumentReference? {
+        guard let postID = repostID?.rawValue, let groupID = repostGroupID?.rawValue else { return nil }
+        return DatabaseService.collection(.groups).document(groupID).collection(.posts).document(postID)
+    }
+    
     var userReference: DocumentReference {
         return DatabaseService.collection(.users).document(userID.rawValue)
     }
@@ -59,6 +66,16 @@ class Post {
         text = data[DatabaseKeys.Post.text.rawValue] as? String ?? ""
         priority = data[DatabaseKeys.Post.priority.rawValue] as? Int ?? 0
         timestamp = (data[DatabaseKeys.Post.timestamp.rawValue] as? Timestamp)?.dateValue() ?? Date()
+        
+        if let postID = data[DatabaseKeys.Post.repostID.rawValue] as? String,
+            let groupID = data[DatabaseKeys.Post.repostGroupID.rawValue] as? String {
+            repostID = Post.ID(rawValue: postID)
+            repostGroupID = Group.ID(rawValue: groupID)
+        } else {
+            repostID = nil
+            repostGroupID = nil
+        }
+        
         numOfLikes = data[DatabaseKeys.Post.numOfLikes.rawValue] as? Int ?? 0
         numOfComments = data[DatabaseKeys.Post.numOfComments.rawValue] as? Int ?? 0
         numOfReposts = data[DatabaseKeys.Post.numOfReposts.rawValue] as? Int ?? 0
