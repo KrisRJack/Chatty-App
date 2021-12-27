@@ -10,7 +10,19 @@ import UIKit
 final class GroupFeedNavigator: UINavigationController {
     
     init() {
-        let rootViewController = GroupFeedViewController()
+        
+        let group = Group(
+            id: "aaeNEdIGXu3aZcWfQCP6",
+            name: "NYC Running Group",
+            hashtag: "nyc-running-group",
+            createdOn: Date(),
+            createdByUserID: "testuserid",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        )
+        
+        
+        let viewModel = GroupFeedViewModel(group: group)
+        let rootViewController = GroupFeedViewController(viewModel: viewModel)
         super.init(rootViewController: rootViewController)
         rootViewController.navigationDelegate = self
     }
