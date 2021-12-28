@@ -65,6 +65,9 @@ public struct DatabaseKeys {
         case priority = "priority"
         case timestamp = "timestamp"
         
+        case repostID = "repostID"
+        case repostGroupID = "repostGroupID"
+        
         case likes = "likes"
         case reposts = "reposts"
         case comments = "comments"
