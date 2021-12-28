@@ -13,28 +13,30 @@ final class GroupFeedViewModel: NSObject {
     public var reloadData: (() -> Void)?
     public var numberOfSections: Int { 1 }
     public var endRefreshing: (() -> Void)?
+    public var reloadAt: ((_ indexPath: IndexPath) -> Void)?
     public var presentErrorMessage: ((_ error: String) -> Void)?
     public var navigationTitle: String { group.hashtag.rawValue }
     public var numberOfRowsInSection: Int { cellViewModels.count }
     
     
     private var group: Group!
-    private var ascendingQuery: Query!
-    private var descendingQuery: Query!
     private var didGetOldestDocument: Bool = false
     private var newestDocument: QueryDocumentSnapshot?
     private var oldestDocument: QueryDocumentSnapshot?
     private var cellViewModels: [PostViewModel] = []
     
     
-    init(group model: Group) {
-        group = model
-        super.init()
-        ascendingQuery = group.postCollection.order(by: DatabaseKeys.Post.userID.rawValue)
-            .order(by: DatabaseKeys.Post.timestamp.rawValue, descending: false)
-        descendingQuery = group.postCollection
-            .order(by: DatabaseKeys.Post.timestamp.rawValue, descending: true)
+    private var ascendingQuery: Query {
+        group.postCollection.order(by: DatabaseKeys.Post.timestamp.rawValue, descending: false)
     }
+    
+    
+    private var descendingQuery: Query {
+        group.postCollection.order(by: DatabaseKeys.Post.timestamp.rawValue, descending: true)
+    }
+    
+    
+    init(group model: Group) { group = model }
     
     
     public func loadInitialBatch() {
@@ -51,6 +53,7 @@ final class GroupFeedViewModel: NSObject {
                 }
                 
                 guard let snapshot = snapshot else {
+                    self.reloadData?()
                     self.endRefreshing?()
                     return
                 }
@@ -60,7 +63,14 @@ final class GroupFeedViewModel: NSObject {
                 self.didGetOldestDocument = snapshot.documents.count < batchSize
                 
                 self.cellViewModels = snapshot.documents.map ({ document in
-                    PostViewModel(post: Post(withData: document.data()))
+                    let viewModel = PostViewModel(post: Post(withData: document.data()))
+                    viewModel.reloadAt = self.reloadAt
+                    return viewModel
+                })
+                
+                self.cellViewModels.enumerated().forEach ({ index, viewModels in
+                    viewModels.indexPath = IndexPath(row: index, section: 0)
+                    viewModels.beginLoadingContentIfNeeded()
                 })
                 
                 self.reloadData?()
@@ -87,6 +97,7 @@ final class GroupFeedViewModel: NSObject {
                 }
                 
                 guard let snapshot = snapshot, !snapshot.isEmpty else {
+                    self.reloadData?()
                     self.endRefreshing?()
                     return
                 }
@@ -97,6 +108,11 @@ final class GroupFeedViewModel: NSObject {
                 })
                 
                 self.cellViewModels = newData + self.cellViewModels
+                
+                self.cellViewModels.enumerated().forEach ({ index, viewModels in
+                    viewModels.indexPath = IndexPath(row: index, section: 0)
+                    viewModels.beginLoadingContentIfNeeded()
+                })
                 
                 self.reloadData?()
                 self.endRefreshing?()
@@ -136,8 +152,12 @@ final class GroupFeedViewModel: NSObject {
                 
                 self.cellViewModels = self.cellViewModels + olderData
                 
-                self.reloadData?()
+                self.cellViewModels.enumerated().forEach ({ index, viewModels in
+                    viewModels.indexPath = IndexPath(row: index, section: 0)
+                    viewModels.beginLoadingContentIfNeeded()
+                })
                 
+                self.reloadData?()
             }
     }
     

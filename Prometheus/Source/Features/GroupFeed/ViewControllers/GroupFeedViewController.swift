@@ -8,22 +8,28 @@
 import UIKit
 
 protocol GroupFeedNavigationDelegate {
-    func goToGroupDetails()
     func goToMyGroups()
+    func goToGroupDetails()
     func presentErrorMessage(error: String)
 }
 
 final class GroupFeedViewController: UITableViewController {
     
+    
+    private var viewModel: GroupFeedViewModel!
     public var navigationDelegate: GroupFeedNavigationDelegate?
     
     
     // MARK: - Init
     
     
-    init() {
+    init(viewModel vm: GroupFeedViewModel) {
+        viewModel = vm
         super.init(nibName: nil, bundle: nil)
-        
+        viewModel.reloadData = ({ self.tableView.reloadData() })
+        viewModel.reloadAt = ({ self.tableView.reloadRows(at: [$0], with: .fade) })
+        viewModel.presentErrorMessage = ({ self.navigationDelegate?.presentErrorMessage(error: $0) })
+        viewModel.loadInitialBatch()
     }
     
     
@@ -37,15 +43,9 @@ final class GroupFeedViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         setUpNavigationBar()
-        tableView.separatorStyle = .none
-        tableView.separatorInset = .zero
-        tableView.allowsSelection = false
-        tableView.showsVerticalScrollIndicator = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 80, right: 0)
-        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
+        addRefreshControlToTableView()
     }
     
     
@@ -56,15 +56,41 @@ final class GroupFeedViewController: UITableViewController {
     }
     
     
+    // MARK: - UITableView Data Source
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        viewModel.numberOfSections
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.numberOfRowsInSection
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let viewModel = viewModel.viewModelForCell(at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
+        (cell as? PostCell)?.configure(with: viewModel)
+        return cell
+    }
+    
+    
     // MARK: - Objective C Functions
     
     
-    @objc private func didTapLeftNavBarItem() {
-        navigationDelegate?.goToMyGroups()
+    @objc private func didPullToRefresh() {
+        viewModel.loadNewerBatch()
     }
     
     
     @objc private func didTapRightNavBarItem() {
+        navigationDelegate?.goToMyGroups()
+    }
+    
+    
+    @objc private func didTapLeftNavBarItem() {
         navigationDelegate?.goToGroupDetails()
     }
     
@@ -77,40 +103,37 @@ final class GroupFeedViewController: UITableViewController {
             image: UIImage(systemName: "square.text.square"),
             style: .plain,
             target: self,
-            action: #selector(didTapRightNavBarItem)
+            action: #selector(didTapLeftNavBarItem)
         )
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image:  UIImage(systemName: "globe"),
             style: .plain,
             target: self,
-            action: #selector(didTapLeftNavBarItem)
+            action: #selector(didTapRightNavBarItem)
         )
         
-        navigationItem.titleView = HashTagView(text: "nyc-running-group", fontSize: 20)
+        navigationItem.titleView = HashTagView(text: viewModel.navigationTitle, fontSize: 20)
     }
     
     
-}
-// MARK: - UITableView Data Source
-
-
-extension GroupFeedViewController {
-    
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    private func setUpTableView() {
+        tableView.separatorStyle = .none
+        tableView.separatorInset = .zero
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 80, right: 0)
+        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
-        return cell
+    private func addRefreshControlToTableView() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        viewModel.endRefreshing = ({ refreshControl.endRefreshing() })
     }
     
     

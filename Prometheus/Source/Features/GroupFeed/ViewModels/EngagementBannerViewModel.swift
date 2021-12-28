@@ -1,5 +1,5 @@
 //
-//  PostFooterViewModel.swift
+//  EngagementBannerViewModel.swift
 //  Prometheus
 //
 //  Created by Kristopher Jackson on 12/19/21.
@@ -8,7 +8,7 @@
 import FirebaseAuth
 import FirebaseFirestore
 
-final class PostFooterViewModel: NSObject {
+final class EngagementBannerViewModel: NSObject {
     
     
     enum ButtonType {

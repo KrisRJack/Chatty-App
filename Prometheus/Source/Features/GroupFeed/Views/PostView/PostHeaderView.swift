@@ -10,23 +10,22 @@ import FirebaseStorageUI
 
 class PostHeaderView: UIView {
     
-    private var profileImageHeight: CGFloat { 50 }
     
-    // MARK: Profile Stack View
-    private lazy var profileStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            profileImageView,
-            infoStackView
-        ])
-        stackView.spacing = 8
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        return stackView
-    }()
+    public var profileImageHeight: CGFloat {
+        willSet {
+            imageViewHeighAnchor?.constant = newValue
+            imageView.cornerRadius(newValue.halfOf)
+        }
+    }
     
     
-    private lazy var profileImageView: UIImageView = {
+    private var imageViewHeighAnchor: NSLayoutConstraint?
+    
+    
+    // MARK: - Views
+    
+    
+    public lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "mockProfileImage"))
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -36,20 +35,8 @@ class PostHeaderView: UIView {
     }()
     
     
-    // MARK: Info Stack View
-    private lazy var infoStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            displayNameLabel,
-            usernameLabel
-        ])
-        stackView.spacing = 2
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        return stackView
-    }()
     
-    
-    private let displayNameLabel: UILabel = {
+    public let headerLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = .tertiaryTheme
@@ -58,16 +45,15 @@ class PostHeaderView: UIView {
     }()
     
     
-    private let usernameLabel: UILabel = {
+    public let subHeaderLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .secondaryLabel
+        label.textColor = .systemGray
         label.font = .systemFont(ofSize: 15)
         return label
     }()
     
     
-    // MARK: More Button
     private let moreButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(
@@ -79,14 +65,41 @@ class PostHeaderView: UIView {
         return button
     }()
     
+    
+    // MARK: Private
+    
+    
+    private lazy var profileStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            imageView,
+            infoStackView
+        ])
+        stackView.spacing = 8
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            headerLabel,
+            subHeaderLabel
+        ])
+        stackView.spacing = 2
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        return stackView
+    }()
+    
+    
     // MARK: - Init
     
     
     init() {
+        profileImageHeight = 50
         super.init(frame: .zero)
-        
-        displayNameLabel.text = "Kris Jackson"
-        usernameLabel.text = "KrisRJack • 12h"
         
         addSubviews([
             profileStackView,
@@ -97,19 +110,31 @@ class PostHeaderView: UIView {
          profileStackView.leftAnchor.constraint(equalTo: leftAnchor),
          profileStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
          
-         profileImageView.heightAnchor.constraint(equalTo: profileImageView.widthAnchor),
-         profileImageView.widthAnchor.constraint(lessThanOrEqualToConstant: profileImageHeight),
+         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
          
          moreButton.rightAnchor.constraint(equalTo: rightAnchor),
          moreButton.centerYAnchor.constraint(equalTo: centerYAnchor),
          moreButton.leftAnchor.constraint(greaterThanOrEqualTo: profileStackView.rightAnchor)
         ].activate()
+        
+        imageViewHeighAnchor = imageView.widthAnchor.constraint(lessThanOrEqualToConstant: profileImageHeight)
+        imageViewHeighAnchor?.activate()
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - Configure View Model
+    
+    
+    public func configure(with viewModel: PostHeaderViewModel) {
+        headerLabel.text =  viewModel.headerString
+        subHeaderLabel.text = viewModel.subHeaderString
+    }
+    
     
 }
 
