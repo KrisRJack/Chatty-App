@@ -20,23 +20,22 @@ final class GroupFeedViewModel: NSObject {
     
     
     private var group: Group!
+    private var ascendingQuery: Query!
+    private var descendingQuery: Query!
     private var didGetOldestDocument: Bool = false
     private var newestDocument: QueryDocumentSnapshot?
     private var oldestDocument: QueryDocumentSnapshot?
     private var cellViewModels: [PostViewModel] = []
     
     
-    private var ascendingQuery: Query {
-        group.postCollection.order(by: DatabaseKeys.Post.timestamp.rawValue, descending: false)
+    init(group model: Group) {
+        group = model
+        super.init()
+        ascendingQuery = group.postCollection.order(by: DatabaseKeys.Post.userID.rawValue)
+            .order(by: DatabaseKeys.Post.timestamp.rawValue, descending: false)
+        descendingQuery = group.postCollection
+            .order(by: DatabaseKeys.Post.timestamp.rawValue, descending: true)
     }
-    
-    
-    private var descendingQuery: Query {
-        group.postCollection.order(by: DatabaseKeys.Post.timestamp.rawValue, descending: true)
-    }
-    
-    
-    init(group model: Group) { group = model }
     
     
     public func loadInitialBatch() {
@@ -97,7 +96,6 @@ final class GroupFeedViewModel: NSObject {
                 }
                 
                 guard let snapshot = snapshot, !snapshot.isEmpty else {
-                    self.reloadData?()
                     self.endRefreshing?()
                     return
                 }
