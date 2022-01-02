@@ -48,7 +48,7 @@ class PostHeaderView: UIView {
     public let subHeaderLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .systemGray
+        label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 15)
         return label
     }()
@@ -66,7 +66,7 @@ class PostHeaderView: UIView {
     }()
     
     
-    // MARK: Private
+    // MARK: Private Views
     
     
     private lazy var profileStackView: UIStackView = {
@@ -110,13 +110,12 @@ class PostHeaderView: UIView {
          profileStackView.leftAnchor.constraint(equalTo: leftAnchor),
          profileStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
          
-         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-         
          moreButton.rightAnchor.constraint(equalTo: rightAnchor),
          moreButton.centerYAnchor.constraint(equalTo: centerYAnchor),
          moreButton.leftAnchor.constraint(greaterThanOrEqualTo: profileStackView.rightAnchor)
         ].activate()
         
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).activate()
         imageViewHeighAnchor = imageView.widthAnchor.constraint(lessThanOrEqualToConstant: profileImageHeight)
         imageViewHeighAnchor?.activate()
     }

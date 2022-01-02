@@ -10,17 +10,28 @@ import Foundation
 extension Int {
     
     var roundedWithAbbreviations: String {
-        let number = Double(self)
-        let thousand = number / 1000
-        let million = number / 1000000
-        if million >= 1.0 {
-            return "\(round(million*10)/10)M"
+        
+        let num = Double(self)
+        let thousandNum = num / 1000
+        let millionNum = num/1000000
+        
+        if num >= 1000 && num < 1000000 {
+            
+            if floor(thousandNum) == thousandNum { return ("\(Int(thousandNum))K") }
+            return ("\(thousandNum.round(to: 1))K")
+            
         }
-        else if thousand >= 1.0 {
-            return "\(round(thousand*10)/10)K"
-        }
-        else {
-            return "\(self)"
+        
+        if num > 1000000 {
+            
+            if floor(millionNum) == millionNum { return ("\(Int(thousandNum))K") }
+            return ("\(millionNum.round(to: 1))M")
+            
+        } else {
+            
+            if floor(num) == num { return ("\(Int(num))") }
+            return ("\(num)")
+            
         }
     }
     

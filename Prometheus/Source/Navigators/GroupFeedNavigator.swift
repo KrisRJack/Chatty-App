@@ -52,6 +52,11 @@ extension GroupFeedNavigator: TabCoordinatorDelegate {
 
 extension GroupFeedNavigator: GroupFeedNavigationDelegate {
     
+    func goToRepost(with viewModel: PostViewModel) {
+        print("Go To Repost")
+    }
+    
+    
     func goToMyGroups() {
         let viewController = MyGroupsViewController()
         viewController.navigationDelegate = self

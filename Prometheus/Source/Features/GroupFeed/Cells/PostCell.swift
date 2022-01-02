@@ -10,7 +10,13 @@ import UIKit
 final class PostCell: UITableViewCell {
     
     
-    private lazy var postView = PostView()
+    private let postView = PostView()
+    
+    
+    public var navigationDelegate: GroupFeedNavigationDelegate? {
+        get { postView.navigationDelegate }
+        set { postView.navigationDelegate = newValue }
+    }
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

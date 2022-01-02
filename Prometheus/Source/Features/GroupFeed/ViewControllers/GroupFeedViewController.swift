@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol GroupFeedNavigationDelegate {
-    func goToMyGroups()
-    func goToGroupDetails()
-    func presentErrorMessage(error: String)
-}
-
 final class GroupFeedViewController: UITableViewController {
     
     
@@ -72,6 +66,7 @@ final class GroupFeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel.viewModelForCell(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
+        (cell as? PostCell)?.navigationDelegate = navigationDelegate
         (cell as? PostCell)?.configure(with: viewModel)
         return cell
     }

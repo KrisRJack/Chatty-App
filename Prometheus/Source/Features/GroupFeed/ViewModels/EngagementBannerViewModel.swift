@@ -18,6 +18,9 @@ final class EngagementBannerViewModel: NSObject {
     }
     
     
+    public var viewModelForPost: PostViewModel!
+    
+    
     public var likeCountStringValue: ((String) -> Void)?
     public var repostCountStringValue: ((String) -> Void)?
     public var commentCountStringValue: ((String) -> Void)?
@@ -40,7 +43,10 @@ final class EngagementBannerViewModel: NSObject {
     private var commentButtonIsSelected: Bool { addObserverToCommentButtonSelectedState?() ?? false }
     
     
-    init(post model: Post) { post = model }
+    init(post model: Post) {
+        post = model
+        viewModelForPost = PostViewModel(post: model)
+    }
     
     
     public func loadInitialData() {

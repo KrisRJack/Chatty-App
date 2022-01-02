@@ -10,6 +10,10 @@ import UIKit
 
 final class RepostView: UIView {
     
+    public var navigationDelegate: GroupFeedNavigationDelegate? {
+        get { engagementBanner.navigationDelegate }
+        set { engagementBanner.navigationDelegate = newValue }
+    }
     
     private let headerView: PostHeaderView = {
         let view = PostHeaderView()
@@ -20,7 +24,7 @@ final class RepostView: UIView {
     }()
     
     
-    private let engagementBanner: EngagementBannerView = {
+    private lazy var engagementBanner: EngagementBannerView = {
         let view = EngagementBannerView()
         view.textColor = .tertiaryTheme
         view.iconTintColor = .tertiaryTheme
@@ -49,7 +53,7 @@ final class RepostView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.clipsToBounds = true
-        stackView.layer.borderWidth = 5
+        stackView.layer.borderWidth = 2
         stackView.backgroundColor = .systemBackground
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layer.borderColor = UIColor.systemBackground.cgColor
@@ -111,7 +115,7 @@ final class RepostView: UIView {
     public func configure(with viewModel: PostViewModel) {
         primaryLabel.attributedStringForPost = viewModel.textContent
         headerView.configure(with: viewModel.postHeaderViewModel)
-//        footerView.configure(with: viewModel.postFooterViewModel)
+        engagementBanner.configure(with: viewModel.postFooterViewModel)
     }
     
 }

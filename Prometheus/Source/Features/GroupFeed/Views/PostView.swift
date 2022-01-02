@@ -10,9 +10,21 @@ import UIKit
 
 final class PostView: UIView {
     
+    public var navigationDelegate: GroupFeedNavigationDelegate? {
+        get { engagementBanner.navigationDelegate }
+        set { engagementBanner.navigationDelegate = newValue }
+    }
+    
     
     private let headerView = PostHeaderView()
-    private let engagementBanner = EngagementBannerView()
+    
+    
+    private lazy var engagementBanner: EngagementBannerView = {
+        let view = EngagementBannerView()
+        view.textColor = .tertiaryTheme
+        view.iconTintColor = .tertiaryTheme
+        return view
+    }()
     
     
     private lazy var stackView: UIStackView = {
@@ -36,7 +48,7 @@ final class PostView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.clipsToBounds = true
-        stackView.layer.borderWidth = 5
+        stackView.layer.borderWidth = 2
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.backgroundColor = .secondarySystemBackground
         stackView.cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
@@ -78,9 +90,7 @@ final class PostView: UIView {
     
     required init() {
         super.init(frame: .zero)
-        primaryLabelView.fill(with: primaryLabel, insets: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: -20))
-        engagementBannerView.fill(with: engagementBanner, insets: UIEdgeInsets(top: 12, left: 20, bottom: -12, right: -20))
-        fill(with: stackView)
+        addSubviewsToView()
     }
     
     
@@ -94,30 +104,30 @@ final class PostView: UIView {
     }
     
     
-    private func setUpStack(withCustomView customView: UIView?) {
-        if let customView = customView {
-            customViewContainer.fill(with: customView, insets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20))
-            chatBubbleStackView.insertArrangedSubview(customViewContainer, at: 1)
-        } else {
-            customViewContainer.removeFromSuperview()
-            chatBubbleStackView.removeArrangedSubview(customViewContainer)
-            customViewContainer.subviews.forEach({ $0.removeFromSuperview() })
-        }
-    }
-    
-    
     public func configure(with viewModel: PostViewModel) {
         primaryLabel.attributedStringForPost = viewModel.textContent
         headerView.configure(with: viewModel.postHeaderViewModel)
-//        footerView.configure(with: viewModel.postFooterViewModel)
-//
-        var customView: UIView?
-        if let rePostViewModel = viewModel.rePostViewModel {
-            let repostedView = RepostView()
-            repostedView.configure(with: rePostViewModel)
-            customView = repostedView
-        }
-        setUpStack(withCustomView: customView)
+        engagementBanner.configure(with: viewModel.postFooterViewModel)
+        addCustomViewIfNeeded(with: viewModel.rePostViewModel)
     }
+    
+    
+    private func addSubviewsToView() {
+        primaryLabelView.fill(with: primaryLabel, insets: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: -20))
+        engagementBannerView.fill(with: engagementBanner, insets: UIEdgeInsets(top: 12, left: 20, bottom: -12, right: -20))
+        fill(with: stackView)
+    }
+    
+    
+    private func addCustomViewIfNeeded(with customViewModel: PostViewModel?) {
+        if let customViewModel = customViewModel {
+            let repostedView = RepostView()
+            repostedView.navigationDelegate = navigationDelegate
+            repostedView.configure(with: customViewModel)
+            customViewContainer.fill(with: repostedView, insets: UIEdgeInsets(top: 4, left: 20, bottom: -4, right: -20))
+            chatBubbleStackView.insertArrangedSubview(customViewContainer, at: 1)
+        }
+    }
+    
     
 }

@@ -10,7 +10,8 @@ import UIKit
 final class EngagementBannerView: UIView {
     
     
-    public var viewModel: EngagementBannerViewModel?
+    private var viewModel: EngagementBannerViewModel?
+    public var navigationDelegate: GroupFeedNavigationDelegate?
     
     
     public var textColor: UIColor {
@@ -84,10 +85,6 @@ final class EngagementBannerView: UIView {
         iconTintColor = .tertiaryTheme
         super.init(frame: .zero)
         
-        likeButton.text = "8K"
-        repostButton.text = "30"
-        commentButton.text = "56"
-        
         backgroundColor = .clear
         fill(with: stackView)
     }
@@ -106,7 +103,10 @@ final class EngagementBannerView: UIView {
     
     
     @objc private func repostButtonPressed() {
-        repostButton.isSelected = !repostButton.isSelected
+        guard let viewModelForPost = viewModel?.viewModelForPost else {
+            return
+        }
+        navigationDelegate?.goToRepost(with: viewModelForPost)
     }
     
     
