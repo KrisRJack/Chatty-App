@@ -57,10 +57,7 @@
                                 </preferredSymbolConfiguration>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build together, stronger." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAm-Eh-lgb">
-                                <rect key="frame" x="97" y="516" width="220" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="zdd-fo-WkM"/>
-                                </constraints>
+                                <rect key="frame" x="102.5" y="516" width="209.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
