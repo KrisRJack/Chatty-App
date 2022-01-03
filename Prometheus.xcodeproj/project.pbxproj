@@ -34,6 +34,9 @@
 		183C71A7276E678F00878F88 /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 183C71A6276E678F00878F88 /* Tagged */; };
 		183C71A9276E678F00878F88 /* TaggedMoney in Frameworks */ = {isa = PBXBuildFile; productRef = 183C71A8276E678F00878F88 /* TaggedMoney */; };
 		183C71AB276E678F00878F88 /* TaggedTime in Frameworks */ = {isa = PBXBuildFile; productRef = 183C71AA276E678F00878F88 /* TaggedTime */; };
+		18547A2E2781FEB90050CE94 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18547A2D2781FEB90050CE94 /* ShareView.swift */; };
+		18547A312782015B0050CE94 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18547A302782015B0050CE94 /* ShareViewModel.swift */; };
+		18547A34278208AE0050CE94 /* EngagementBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18547A33278208AE0050CE94 /* EngagementBanner.swift */; };
 		185E0DE5276F5AFE00FC663E /* PostHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E0DE4276F5AFE00FC663E /* PostHeaderViewModel.swift */; };
 		185E0DE8276F5B6A00FC663E /* PostHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E0DE7276F5B6A00FC663E /* PostHeaderModel.swift */; };
 		185E0DEA276F69AE00FC663E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E0DE9276F69AE00FC663E /* Date.swift */; };
@@ -151,6 +154,9 @@
 		183C719E276E126500878F88 /* DatabaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeys.swift; sourceTree = "<group>"; };
 		183C71A0276E128000878F88 /* DatabaseKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseKeyType.swift; sourceTree = "<group>"; };
 		183C71A3276E652300878F88 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		18547A2D2781FEB90050CE94 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		18547A302782015B0050CE94 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
+		18547A33278208AE0050CE94 /* EngagementBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBanner.swift; sourceTree = "<group>"; };
 		185E0DE4276F5AFE00FC663E /* PostHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderViewModel.swift; sourceTree = "<group>"; };
 		185E0DE7276F5B6A00FC663E /* PostHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderModel.swift; sourceTree = "<group>"; };
 		185E0DE9276F69AE00FC663E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -306,6 +312,31 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		18547A2B2781FE570050CE94 /* Add-Ons */ = {
+			isa = PBXGroup;
+			children = (
+				18547A2C2781FE940050CE94 /* Views */,
+				18547A2F2782013E0050CE94 /* ViewModels */,
+			);
+			path = "Add-Ons";
+			sourceTree = "<group>";
+		};
+		18547A2C2781FE940050CE94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18547A2D2781FEB90050CE94 /* ShareView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18547A2F2782013E0050CE94 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				18547A302782015B0050CE94 /* ShareViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		185E0DE6276F5B5A00FC663E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +421,7 @@
 		186E30E727598EB500A1D477 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				18547A2B2781FE570050CE94 /* Add-Ons */,
 				18E0846B2762C50A00DDFD33 /* Compose */,
 				186E310F2759BE0900A1D477 /* GroupDetails */,
 				186E30EA2759908100A1D477 /* GroupFeed */,
@@ -570,6 +602,7 @@
 		188CDB08275BFB310008C41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18547A33278208AE0050CE94 /* EngagementBanner.swift */,
 				188CDB05275B9D660008C41A /* EngagementButtonView.swift */,
 				18BE80FB275E4D530011DB5C /* HashTagView.swift */,
 				188CDB15275C13F80008C41A /* LogoView.swift */,
@@ -1024,6 +1057,7 @@
 				188CDB1B275D00F90008C41A /* TabCoordinator.swift in Sources */,
 				18BE80F8275E42AE0011DB5C /* GroupDetailsNavigator.swift in Sources */,
 				185E0DEA276F69AE00FC663E /* Date.swift in Sources */,
+				18547A2E2781FEB90050CE94 /* ShareView.swift in Sources */,
 				188CDB06275B9D660008C41A /* EngagementButtonView.swift in Sources */,
 				186E309827598E4600A1D477 /* AppDelegate.swift in Sources */,
 				185E0DEE276F7EDD00FC663E /* EngagementBannerViewModel.swift in Sources */,
@@ -1045,6 +1079,7 @@
 				186E31082759A45F00A1D477 /* Array.swift in Sources */,
 				18F32F97276DF9AA00FD6D4C /* DatabaseService.swift in Sources */,
 				18BE810627605C430011DB5C /* ProfileHeaderView.swift in Sources */,
+				18547A34278208AE0050CE94 /* EngagementBanner.swift in Sources */,
 				18E0846E2762C69100DDFD33 /* ComposeViewController.swift in Sources */,
 				188CDB16275C13F80008C41A /* LogoView.swift in Sources */,
 				189A4B902767E10C00A393CC /* MessagePreviewCell.swift in Sources */,
@@ -1070,6 +1105,7 @@
 				18BE810C2760F0B50011DB5C /* ProfileImageView.swift in Sources */,
 				18E084752762E92E00DDFD33 /* ComposeTextView.swift in Sources */,
 				186E310C2759AFAF00A1D477 /* UIColor.swift in Sources */,
+				18547A312782015B0050CE94 /* ShareViewModel.swift in Sources */,
 				188CDB02275B16860008C41A /* NSLayoutConstraint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

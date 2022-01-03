@@ -34,6 +34,21 @@ class EngagementButtonView: UIControl {
         }
     }
     
+    override var isUserInteractionEnabled: Bool {
+        willSet {
+            if newValue {
+        
+                label.textColor = normalLabelColor
+                iconImageView.tintColor = normalImageColor
+                
+            } else {
+                
+                label.textColor = .tertiaryLabel
+                iconImageView.tintColor = .tertiaryLabel
+                
+            }
+        }
+    }
     
     private var normalImage: UIImage? = nil
     private var selectedImage: UIImage? = nil
