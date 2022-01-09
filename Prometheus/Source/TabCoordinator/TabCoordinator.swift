@@ -13,8 +13,10 @@ protocol TabCoordinatorDelegate {
 
 final class TabCoordinator: UITabBarController {
     
+    private var viewModel: LaunchViewModel!
     private var lastPresentingIndex = 0
     private var primaryButtonHeight: CGFloat { 58 }
+    
     public var navigationDelegate: TabCoordinatorDelegate?
 
     // MARK: Primary Button
@@ -57,7 +59,7 @@ final class TabCoordinator: UITabBarController {
     
     
     private lazy var groupFeedNavigator: GroupFeedNavigator = {
-        let viewController = GroupFeedNavigator()
+        let viewController = GroupFeedNavigator(viewModel: viewModel)
         viewController.tabBarItem = tabBarItem(title: "Feed", systemName: "square.text.square")
         return viewController
     }()
@@ -83,6 +85,19 @@ final class TabCoordinator: UITabBarController {
         viewController.tabBarItem = tabBarItem(title: "You", systemName: "person.crop.circle")
         return viewController
     }()
+    
+    
+    // MARK: - Init
+    
+    
+    init(with vm: LaunchViewModel) {
+        viewModel = vm
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     // MARK: - View Life Cycle
