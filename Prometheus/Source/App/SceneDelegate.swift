@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
-        self.window?.rootViewController = TabCoordinator()
+        self.window?.rootViewController = LaunchNavigator()
         self.window?.makeKeyAndVisible()
         
     }
