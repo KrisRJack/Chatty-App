@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHN-Bg-Duw">
-                                <rect key="frame" x="97" y="432" width="220.5" height="72"/>
+                                <rect key="frame" x="99" y="432" width="216.5" height="72"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Eg-o6A">
                                         <rect key="frame" x="0.0" y="0.0" width="204" height="72"/>
@@ -28,7 +28,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuP-7x-ASx">
-                                        <rect key="frame" x="204" y="0.0" width="16.5" height="72"/>
+                                        <rect key="frame" x="200" y="0.0" width="16.5" height="72"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="60"/>
                                         <color key="textColor" name="primaryTheme"/>
                                         <nil key="highlightedColor"/>
@@ -41,12 +41,12 @@
                                     <constraint firstAttribute="bottom" secondItem="QuP-7x-ASx" secondAttribute="bottom" id="7am-JY-yL6"/>
                                     <constraint firstAttribute="bottom" secondItem="0bj-Eg-o6A" secondAttribute="bottom" id="J8D-GD-zRc"/>
                                     <constraint firstItem="0bj-Eg-o6A" firstAttribute="leading" secondItem="VHN-Bg-Duw" secondAttribute="leading" id="Ky5-bo-1f6"/>
-                                    <constraint firstItem="QuP-7x-ASx" firstAttribute="leading" secondItem="0bj-Eg-o6A" secondAttribute="trailing" id="a6h-CM-IB7"/>
+                                    <constraint firstItem="QuP-7x-ASx" firstAttribute="leading" secondItem="0bj-Eg-o6A" secondAttribute="trailing" constant="-4" id="a6h-CM-IB7"/>
                                     <constraint firstAttribute="trailing" secondItem="QuP-7x-ASx" secondAttribute="trailing" id="dcL-VZ-JXG"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ABM-AY-N6D">
-                                <rect key="frame" x="97" y="327" width="93.5" height="100.5"/>
+                                <rect key="frame" x="99" y="327" width="93.5" height="100.5"/>
                                 <color key="tintColor" name="primaryTheme"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ABM-AY-N6D" secondAttribute="height" multiplier="1:1" id="4HY-BA-kHr"/>
