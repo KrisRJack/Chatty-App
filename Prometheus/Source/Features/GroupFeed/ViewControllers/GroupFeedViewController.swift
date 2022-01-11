@@ -7,23 +7,31 @@
 
 import UIKit
 
+
+protocol GroupFeedNavigationDelegate {
+    func goToMyGroups()
+    func goToGroupDetails()
+    func presentErrorMessage(error: String)
+}
+
 final class GroupFeedViewController: UITableViewController {
     
     
-    private var viewModel: GroupFeedViewModel!
+    private var viewModel: LaunchViewModel!
     public var navigationDelegate: GroupFeedNavigationDelegate?
+    public var engagementBannerNavigationDelegate: EngagementBannerNavigationDelegate?
     
     
     // MARK: - Init
     
     
-    init(viewModel vm: GroupFeedViewModel) {
+    init(viewModel vm: LaunchViewModel) {
         viewModel = vm
         super.init(nibName: nil, bundle: nil)
-        viewModel.reloadData = ({ self.tableView.reloadData() })
-        viewModel.reloadAt = ({ self.tableView.reloadRows(at: [$0], with: .fade) })
-        viewModel.presentErrorMessage = ({ self.navigationDelegate?.presentErrorMessage(error: $0) })
-        viewModel.loadInitialBatch()
+//        viewModel.reloadData = ({ self.tableView.reloadData() })
+//        viewModel.reloadAt = ({ self.tableView.reloadRows(at: [$0], with: .fade) })
+//        viewModel.presentErrorMessage = ({ self.navigationDelegate?.presentErrorMessage(error: $0) })
+//        viewModel.loadInitialBatch()
     }
     
     
@@ -66,7 +74,7 @@ final class GroupFeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel.viewModelForCell(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
-        (cell as? PostCell)?.navigationDelegate = navigationDelegate
+        (cell as? PostCell)?.engagementBannerNavigationDelegate = engagementBannerNavigationDelegate
         (cell as? PostCell)?.configure(with: viewModel)
         return cell
     }
@@ -76,7 +84,7 @@ final class GroupFeedViewController: UITableViewController {
     
     
     @objc private func didPullToRefresh() {
-        viewModel.loadNewerBatch()
+//        viewModel.loadNewerBatch()
     }
     
     
@@ -125,10 +133,10 @@ final class GroupFeedViewController: UITableViewController {
     
     
     private func addRefreshControlToTableView() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-        viewModel.endRefreshing = ({ refreshControl.endRefreshing() })
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+//        tableView.addSubview(refreshControl)
+//        viewModel.endRefreshing = ({ refreshControl.endRefreshing() })
     }
     
     

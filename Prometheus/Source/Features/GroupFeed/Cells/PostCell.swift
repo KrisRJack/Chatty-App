@@ -13,9 +13,9 @@ final class PostCell: UITableViewCell {
     private let postView = PostView()
     
     
-    public var navigationDelegate: GroupFeedNavigationDelegate? {
-        get { postView.navigationDelegate }
-        set { postView.navigationDelegate = newValue }
+    public var engagementBannerNavigationDelegate: EngagementBannerNavigationDelegate? {
+        get { postView.engagementBannerNavigationDelegate }
+        set { postView.engagementBannerNavigationDelegate = newValue }
     }
     
     
@@ -27,6 +27,12 @@ final class PostCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        postView.prepareForReuse()
     }
     
     

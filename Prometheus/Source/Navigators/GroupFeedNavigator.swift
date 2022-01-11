@@ -9,22 +9,11 @@ import UIKit
 
 final class GroupFeedNavigator: UINavigationController {
     
-    init() {
-        
-        let group = Group(
-            id: "aaeNEdIGXu3aZcWfQCP6",
-            name: "NYC Running Group",
-            hashtag: "nyc-running-group",
-            createdOn: Date(),
-            createdByUserID: "testuserid",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        )
-        
-        
-        let viewModel = GroupFeedViewModel(group: group)
+    init(viewModel: LaunchViewModel) {
         let rootViewController = GroupFeedViewController(viewModel: viewModel)
         super.init(rootViewController: rootViewController)
         rootViewController.navigationDelegate = self
+        rootViewController.engagementBannerNavigationDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,11 +40,6 @@ extension GroupFeedNavigator: TabCoordinatorDelegate {
 }
 
 extension GroupFeedNavigator: GroupFeedNavigationDelegate {
-    
-    func goToRepost(with viewModel: PostViewModel) {
-        print("Go To Repost")
-    }
-    
     
     func goToMyGroups() {
         let viewController = MyGroupsViewController()
@@ -86,6 +70,15 @@ extension GroupFeedNavigator: GroupDetailsNavigationDelegate {
     
     func dismissGroupDetails() {
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension GroupFeedNavigator: EngagementBannerNavigationDelegate {
+    
+    func performRepostNavigation(with viewModel: PostViewModel) {
+        let viewController = ComposeNavigator(with: viewModel)
+        present(viewController, animated: true, completion: nil)
     }
     
 }

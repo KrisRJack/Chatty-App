@@ -28,7 +28,7 @@ final class PostViewModel: NSObject {
     
     
     public var postFooterViewModel: EngagementBannerViewModel {
-        EngagementBannerViewModel(post: post)
+        EngagementBannerViewModel(post: post, postViewModel: self)
     }
     
     
@@ -37,18 +37,6 @@ final class PostViewModel: NSObject {
         super.init()
     }
     
-    
-    public func beginLoadingContentIfNeeded() {
-        post.repostedReference?.getDocument(completion: { snapshot, error in
-            if let _ = error { return }
-            guard let snapshot = snapshot else { return }
-            if let data = snapshot.data() {
-                self.rePostViewModel = PostViewModel(post: Post(withData: data))
-                guard let indexPath = self.indexPath else { return }
-                self.reloadAt?(indexPath)
-            }
-        })
-    }
     
     public func fetchContentIfNeeded(completion: ((_ error: Error?) -> Void)? = nil) {
         guard let reference = post.repostedReference else {

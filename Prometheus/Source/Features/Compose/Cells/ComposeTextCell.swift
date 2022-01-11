@@ -20,8 +20,8 @@ final class ComposeTextCell: UITableViewCell {
         }
     }
     
-    init(reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    init() {
+        super.init(style: .default, reuseIdentifier: ComposeTextCell.reuseIdentifier)
         setUpViews()
     }
     

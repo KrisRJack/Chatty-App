@@ -13,7 +13,13 @@ final class ComposeNavigator: UINavigationController {
         let rootViewController = ComposeViewController()
         super.init(rootViewController: rootViewController)
         rootViewController.navigationDelegate = self
-        
+        modalPresentationStyle = .overFullScreen
+    }
+    
+    init(with viewModel: PostViewModel) {
+        let rootViewController = ComposeViewController(with: viewModel)
+        super.init(rootViewController: rootViewController)
+        rootViewController.navigationDelegate = self
         modalPresentationStyle = .overFullScreen
     }
     
@@ -30,7 +36,7 @@ final class ComposeNavigator: UINavigationController {
         view.backgroundColor = .clear
         navigationBar.backgroundColor = .clear
 
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         visualEffectView.frame = view.bounds
         visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(visualEffectView)

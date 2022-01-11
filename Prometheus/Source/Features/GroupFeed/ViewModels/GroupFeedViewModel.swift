@@ -69,7 +69,7 @@ final class GroupFeedViewModel: NSObject {
                 
                 self.cellViewModels.enumerated().forEach ({ index, viewModels in
                     viewModels.indexPath = IndexPath(row: index, section: 0)
-                    viewModels.beginLoadingContentIfNeeded()
+//                    viewModels.beginLoadingContentIfNeeded()
                 })
                 
                 self.reloadData?()
@@ -109,7 +109,7 @@ final class GroupFeedViewModel: NSObject {
                 
                 self.cellViewModels.enumerated().forEach ({ index, viewModels in
                     viewModels.indexPath = IndexPath(row: index, section: 0)
-                    viewModels.beginLoadingContentIfNeeded()
+//                    viewModels.beginLoadingContentIfNeeded()
                 })
                 
                 self.reloadData?()
@@ -152,7 +152,7 @@ final class GroupFeedViewModel: NSObject {
                 
                 self.cellViewModels.enumerated().forEach ({ index, viewModels in
                     viewModels.indexPath = IndexPath(row: index, section: 0)
-                    viewModels.beginLoadingContentIfNeeded()
+//                    viewModels.beginLoadingContentIfNeeded()
                 })
                 
                 self.reloadData?()
