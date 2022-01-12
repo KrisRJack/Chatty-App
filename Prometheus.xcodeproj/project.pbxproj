@@ -517,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				186E31012759A01B00A1D477 /* GroupTitleView.swift */,
-				188CDAFF275AF9D00008C41A /* PostHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -630,6 +629,9 @@
 		188CDB08275BFB310008C41A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18FE430E278A697F00C3D414 /* EngagementBanner */,
+				1879D9CF278BB20C0097800E /* PostView */,
+				18C30A52278F1ECB00406519 /* PostHeaderView */,
 				188CDB05275B9D660008C41A /* EngagementButtonView.swift */,
 				18BE80FB275E4D530011DB5C /* HashTagView.swift */,
 				188CDB15275C13F80008C41A /* LogoView.swift */,
@@ -637,8 +639,6 @@
 				18BE80F9275E48F20011DB5C /* GroupImageView.swift */,
 				18665C54276236A800E17C02 /* SubtitleCell.swift */,
 				18E084792762EC5C00DDFD33 /* TextView.swift */,
-				18FE430E278A697F00C3D414 /* EngagementBanner */,
-				1879D9CF278BB20C0097800E /* PostView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -828,7 +828,6 @@
 			isa = PBXGroup;
 			children = (
 				18C27CE4276CB68F00BE1714 /* GroupFeedViewModel.swift */,
-				185E0DE4276F5AFE00FC663E /* PostHeaderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -839,6 +838,31 @@
 				18C27CE7276CBF1C00BE1714 /* Typealias.swift */,
 			);
 			path = Typealias;
+			sourceTree = "<group>";
+		};
+		18C30A52278F1ECB00406519 /* PostHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				18C30A54278F1EE000406519 /* View */,
+				18C30A53278F1EDA00406519 /* ViewModel */,
+			);
+			path = PostHeaderView;
+			sourceTree = "<group>";
+		};
+		18C30A53278F1EDA00406519 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				185E0DE4276F5AFE00FC663E /* PostHeaderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18C30A54278F1EE000406519 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				188CDAFF275AF9D00008C41A /* PostHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		18E0846B2762C50A00DDFD33 /* Compose */ = {
