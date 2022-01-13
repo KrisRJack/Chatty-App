@@ -39,6 +39,11 @@ final class ComposeTextCell: UITableViewCell {
         composeView.becomeFirstResponder()
     }
     
+    @discardableResult
+    public override func resignFirstResponder() -> Bool {
+        composeView.resignFirstResponder()
+    }
+    
     private func setUpViews() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear

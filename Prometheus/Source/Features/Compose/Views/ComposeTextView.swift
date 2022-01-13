@@ -64,6 +64,10 @@ final class ComposeTextView: UIView {
         textView.becomeFirstResponder()
     }
     
+    public override func resignFirstResponder() -> Bool {
+        textView.resignFirstResponder()
+    }
+    
     private func setUpViews() {
         backgroundColor = .clear
         isUserInteractionEnabled = true
