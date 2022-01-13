@@ -108,10 +108,10 @@
 		18BE8102275EDEBB0011DB5C /* GroupDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE8101275EDEBB0011DB5C /* GroupDetailsModel.swift */; };
 		18BE810627605C430011DB5C /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE810527605C430011DB5C /* ProfileHeaderView.swift */; };
 		18BE810827605F1A0011DB5C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE810727605F1A0011DB5C /* ProfileModel.swift */; };
-		18BE810C2760F0B50011DB5C /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE810B2760F0B50011DB5C /* ProfileImageView.swift */; };
 		18C27CE5276CB68F00BE1714 /* GroupFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE4276CB68F00BE1714 /* GroupFeedViewModel.swift */; };
 		18C27CE8276CBF1C00BE1714 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE7276CBF1C00BE1714 /* Typealias.swift */; };
 		18C27CEA276CC41E00BE1714 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE9276CC41E00BE1714 /* PostViewModel.swift */; };
+		18C30A58278FABD800406519 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A57278FABD800406519 /* ProfileImageView.swift */; };
 		18E0846E2762C69100DDFD33 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846D2762C69100DDFD33 /* ComposeViewController.swift */; };
 		18E084702762C72A00DDFD33 /* ComposeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */; };
 		18E084752762E92E00DDFD33 /* ComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084742762E92E00DDFD33 /* ComposeTextView.swift */; };
@@ -222,10 +222,10 @@
 		18BE8101275EDEBB0011DB5C /* GroupDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsModel.swift; sourceTree = "<group>"; };
 		18BE810527605C430011DB5C /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		18BE810727605F1A0011DB5C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		18BE810B2760F0B50011DB5C /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileImageView.swift; path = ../ProfileImageView.swift; sourceTree = "<group>"; };
 		18C27CE4276CB68F00BE1714 /* GroupFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedViewModel.swift; sourceTree = "<group>"; };
 		18C27CE7276CBF1C00BE1714 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		18C27CE9276CC41E00BE1714 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		18C30A57278FABD800406519 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		18E0846D2762C69100DDFD33 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeNavigator.swift; sourceTree = "<group>"; };
 		18E084742762E92E00DDFD33 /* ComposeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTextView.swift; sourceTree = "<group>"; };
@@ -635,7 +635,7 @@
 				188CDB05275B9D660008C41A /* EngagementButtonView.swift */,
 				18BE80FB275E4D530011DB5C /* HashTagView.swift */,
 				188CDB15275C13F80008C41A /* LogoView.swift */,
-				18BE810B2760F0B50011DB5C /* ProfileImageView.swift */,
+				18C30A57278FABD800406519 /* ProfileImageView.swift */,
 				18BE80F9275E48F20011DB5C /* GroupImageView.swift */,
 				18665C54276236A800E17C02 /* SubtitleCell.swift */,
 				18E084792762EC5C00DDFD33 /* TextView.swift */,
@@ -1170,6 +1170,7 @@
 				18E084942767799400DDFD33 /* GroupDetailHeaderCell.swift in Sources */,
 				183C719F276E126500878F88 /* DatabaseKeys.swift in Sources */,
 				186E309A27598E4600A1D477 /* SceneDelegate.swift in Sources */,
+				18C30A58278FABD800406519 /* ProfileImageView.swift in Sources */,
 				186E311A275A3F8D00A1D477 /* User.swift in Sources */,
 				18E0848F2766282E00DDFD33 /* SearchHeaderView.swift in Sources */,
 				18665C55276236A800E17C02 /* SubtitleCell.swift in Sources */,
@@ -1205,7 +1206,6 @@
 				18BE80FA275E48F20011DB5C /* GroupImageView.swift in Sources */,
 				186E3115275A3DF500A1D477 /* GroupDetailsHeaderView.swift in Sources */,
 				18919E9A27735AB3004F7D0D /* StorageReference.swift in Sources */,
-				18BE810C2760F0B50011DB5C /* ProfileImageView.swift in Sources */,
 				18E084752762E92E00DDFD33 /* ComposeTextView.swift in Sources */,
 				186E310C2759AFAF00A1D477 /* UIColor.swift in Sources */,
 				1899A576278315BD0093DF35 /* LaunchViewModel.swift in Sources */,
