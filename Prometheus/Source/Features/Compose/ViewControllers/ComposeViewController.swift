@@ -9,6 +9,7 @@ import UIKit
 
 protocol ComposeNavigationDelegate {
     func dismiss()
+    func goToComposePreview()
 }
 
 final class ComposeViewController: UIViewController {
@@ -66,10 +67,12 @@ final class ComposeViewController: UIViewController {
     }
     
     
+    // Shake to dismiss functionality. Eliminates the
+    // need to include a post button and can use space for other buttons
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             Vibration.vibrate(with: .success)
-            navigationDelegate?.dismiss()
+            navigationDelegate?.goToComposePreview()
         }
     }
     

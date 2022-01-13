@@ -52,4 +52,9 @@ extension ComposeNavigator: ComposeNavigationDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    func goToComposePreview() {
+        let viewController = ComposePreviewViewController()
+        pushViewController(viewController, animated: true)
+    }
+    
 }

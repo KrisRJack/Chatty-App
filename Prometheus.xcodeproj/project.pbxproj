@@ -112,6 +112,7 @@
 		18C27CE8276CBF1C00BE1714 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE7276CBF1C00BE1714 /* Typealias.swift */; };
 		18C27CEA276CC41E00BE1714 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE9276CC41E00BE1714 /* PostViewModel.swift */; };
 		18C30A58278FABD800406519 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A57278FABD800406519 /* ProfileImageView.swift */; };
+		18C30A5A278FAC7300406519 /* ComposePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */; };
 		18E0846E2762C69100DDFD33 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846D2762C69100DDFD33 /* ComposeViewController.swift */; };
 		18E084702762C72A00DDFD33 /* ComposeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */; };
 		18E084752762E92E00DDFD33 /* ComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084742762E92E00DDFD33 /* ComposeTextView.swift */; };
@@ -226,6 +227,7 @@
 		18C27CE7276CBF1C00BE1714 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		18C27CE9276CC41E00BE1714 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		18C30A57278FABD800406519 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewViewController.swift; sourceTree = "<group>"; };
 		18E0846D2762C69100DDFD33 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeNavigator.swift; sourceTree = "<group>"; };
 		18E084742762E92E00DDFD33 /* ComposeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTextView.swift; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				18E0846D2762C69100DDFD33 /* ComposeViewController.swift */,
+				18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1164,6 +1167,7 @@
 				188CDAFA275AEE640008C41A /* UITableViewCell.swift in Sources */,
 				188CDB1D275D02410008C41A /* ProfileNavigator.swift in Sources */,
 				188CDAF8275AECC20008C41A /* PostCell.swift in Sources */,
+				18C30A5A278FAC7300406519 /* ComposePreviewViewController.swift in Sources */,
 				188CDB28275D16650008C41A /* InboxNavigator.swift in Sources */,
 				180B0E3727763DC6004B281D /* UILabel.swift in Sources */,
 				186E31052759A40E00A1D477 /* UIView.swift in Sources */,
