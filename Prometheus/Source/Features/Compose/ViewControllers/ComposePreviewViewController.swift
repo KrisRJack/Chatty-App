@@ -23,6 +23,7 @@ final class ComposePreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
     
     

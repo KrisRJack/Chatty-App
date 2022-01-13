@@ -27,7 +27,6 @@ final class ComposeViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         let cell = ComposeTextCell()
         cell.textViewDelegate = self
-        cell.becomeFirstResponder()
         tableViewCells.append(cell)
         setUpViews()
     }
@@ -64,6 +63,13 @@ final class ComposeViewController: UIViewController {
         super.viewWillAppear(animated)
         tableView.beginUpdates()
         tableView.endUpdates()
+        tableViewCells.first?.becomeFirstResponder()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableViewCells.first?.resignFirstResponder()
     }
     
     
