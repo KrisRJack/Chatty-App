@@ -880,8 +880,8 @@
 		18E0846C2762C5F800DDFD33 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				18E0846D2762C69100DDFD33 /* ComposeViewController.swift */,
 				18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */,
+				18E0846D2762C69100DDFD33 /* ComposeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
