@@ -113,6 +113,7 @@
 		18C27CEA276CC41E00BE1714 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C27CE9276CC41E00BE1714 /* PostViewModel.swift */; };
 		18C30A58278FABD800406519 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A57278FABD800406519 /* ProfileImageView.swift */; };
 		18C30A5A278FAC7300406519 /* ComposePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */; };
+		18C30A602790430900406519 /* ComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C30A5F2790430900406519 /* ComposeViewModel.swift */; };
 		18E0846E2762C69100DDFD33 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846D2762C69100DDFD33 /* ComposeViewController.swift */; };
 		18E084702762C72A00DDFD33 /* ComposeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */; };
 		18E084752762E92E00DDFD33 /* ComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084742762E92E00DDFD33 /* ComposeTextView.swift */; };
@@ -228,6 +229,7 @@
 		18C27CE9276CC41E00BE1714 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		18C30A57278FABD800406519 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		18C30A59278FAC7300406519 /* ComposePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewViewController.swift; sourceTree = "<group>"; };
+		18C30A5F2790430900406519 /* ComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewModel.swift; sourceTree = "<group>"; };
 		18E0846D2762C69100DDFD33 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		18E0846F2762C72A00DDFD33 /* ComposeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeNavigator.swift; sourceTree = "<group>"; };
 		18E084742762E92E00DDFD33 /* ComposeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTextView.swift; sourceTree = "<group>"; };
@@ -867,11 +869,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		18C30A5E279042F700406519 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				18C30A5F2790430900406519 /* ComposeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		18E0846B2762C50A00DDFD33 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
 				18E084762762EAB400DDFD33 /* Cells */,
 				18E084732762E8F100DDFD33 /* Views */,
+				18C30A5E279042F700406519 /* ViewModel */,
 				18E0846C2762C5F800DDFD33 /* ViewControllers */,
 			);
 			path = Compose;
@@ -1191,6 +1202,7 @@
 				189A4B902767E10C00A393CC /* MessagePreviewCell.swift in Sources */,
 				18BE810827605F1A0011DB5C /* ProfileModel.swift in Sources */,
 				188CDB10275C10470008C41A /* MyGroupsNavigator.swift in Sources */,
+				18C30A602790430900406519 /* ComposeViewModel.swift in Sources */,
 				1879D9D2278BB2240097800E /* PostView.swift in Sources */,
 				183C71A4276E652300878F88 /* Post.swift in Sources */,
 				18E084782762EAC700DDFD33 /* ComposeTextCell.swift in Sources */,
