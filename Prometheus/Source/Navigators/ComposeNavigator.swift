@@ -29,13 +29,24 @@ final class ComposeNavigator: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigationBar()
+        removeCurrentBackground()
+        addBlurBackgroundColor()
+        interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    private func setUpNavigationBar() {
         navigationBar.shadowImage = UIImage()
         navigationBar.tintColor = .tertiaryTheme
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.tertiaryTheme]
-        
+    }
+    
+    private func removeCurrentBackground() {
         view.backgroundColor = .clear
         navigationBar.backgroundColor = .clear
-
+    }
+    
+    private func addBlurBackgroundColor() {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         visualEffectView.frame = view.bounds
         visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -54,7 +65,17 @@ extension ComposeNavigator: ComposeNavigationDelegate {
     
     func goToComposePreview() {
         let viewController = ComposePreviewViewController()
+        viewController.navigationDelegate = self
         pushViewController(viewController, animated: true)
+    }
+    
+}
+
+
+extension ComposeNavigator: ComposePreviewNavigationDelegate {
+    
+    func goBackToEditPost() {
+        popViewController(animated: true)
     }
     
 }

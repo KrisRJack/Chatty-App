@@ -56,13 +56,20 @@ final class ComposeViewController: UIViewController {
         setUpNavigationBar()
         setUpTableView()
         addKeyboardObservers()
+        tableViewCells.first?.becomeFirstResponder()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        animatedEntrance()
         tableView.beginUpdates()
         tableView.endUpdates()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tableViewCells.first?.becomeFirstResponder()
     }
     
@@ -73,12 +80,11 @@ final class ComposeViewController: UIViewController {
     }
     
     
-    // Shake to dismiss functionality. Eliminates the
-    // need to include a post button and can use space for other buttons
+    // Shake to post functionality. Eliminates the
+    // need to include a continue button and can use space for other buttons
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            Vibration.vibrate(with: .success)
-            navigationDelegate?.goToComposePreview()
+            animatedExit()
         }
     }
     
@@ -163,7 +169,26 @@ final class ComposeViewController: UIViewController {
         )
         
         navigationItem.title = "Shake to Post 👋"
-        navigationItem.backButtonTitle = "Back"
+        navigationItem.backButtonTitle = "Shake to Edit 👈"
+    }
+    
+    
+    private func animatedEntrance() {
+        UIView.animate(withDuration: 0.2) {
+            self.tableView.alpha = 1
+        }
+    }
+    
+    
+    private func animatedExit() {
+        self.view.endEditing(true)
+        UIView.animate(withDuration: 0.2) {
+            self.tableView.alpha = 0
+        } completion: { didFinishAnimating in
+            if didFinishAnimating {
+                self.navigationDelegate?.goToComposePreview()
+            }
+        }
     }
     
     
