@@ -1,11 +1,8 @@
 # Chatty. App
-### Warning: This project is early in development and a work-in-progress. There will bugs 🐛.
 
-This has been an ongoing side-project that I recently decided to start again from scratch. The goal of this project is to build a simple topic based social media app (similar to Reddit).
+Topic based social media app (essentially a mash-up of Twitter & Reddit). Written in Swift using Firebase, Realm, & Algolia. Being developed with accessibilty in mind using `UIFont.preferredFont`, landscape, and dark mode capabilities. Project is super early in development and mostly UI at this point (there will be bugs 🐛). 
 
-While the project itself is mostly UI work right now, I've started implementing some backend logic using Firebase (Algolia for Search) mostly within the launch and feed controllers. This app is being built with accessibilty in mind using `UIFont.preferredFont`, landscape mode, and dark mode capabilities.
-
-Below are screenshots of the app SO FAR. More will be added as progress continues. To see more of my side projects, visit [krisrjack.com](https://www.krisrjack.com).
+To see more of my side projects, visit [krisrjack.com](https://www.krisrjack.com).
 
 #### Light Mode
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/launch.light.jpg" width="250px">&#160;
