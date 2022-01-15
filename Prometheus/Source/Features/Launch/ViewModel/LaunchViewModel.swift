@@ -26,14 +26,6 @@ final class LaunchViewModel: NSObject {
     private var didGetOldestDocumentOnServer: Bool = false
     
     
-    /// UI can update when all values are `true` and custom views (such as reposts) are loaded
-    private var didFetchContentForViewModelsAtIndex: [Bool] = [] {
-        willSet {
-            if newValue.allSatisfy({ $0 }) { didFinishLoadingData?() }
-        }
-    }
-    
-    
     init(group model: Group) {
         group = model
         
@@ -58,7 +50,6 @@ final class LaunchViewModel: NSObject {
                 }
                 
                 guard let snapshot = snapshot else {
-                    // Snaphot doesn't exist
                     didFinishLoadingData?()
                     return
                 }
@@ -66,17 +57,12 @@ final class LaunchViewModel: NSObject {
                 newestDocument = snapshot.documents.first
                 oldestDocument = snapshot.documents.last
                 didGetOldestDocumentOnServer = snapshot.documents.count < batchSize
-                didFetchContentForViewModelsAtIndex = [Bool](repeating: false, count: snapshot.documents.count)
                 
                 cellViewModels = snapshot.documents.map ({ document in
                     PostViewModel(post: Post(withData: document.data()))
                 })
                 
-                cellViewModels.enumerated().forEach ({ index, viewModel in
-                    viewModel.fetchContentIfNeeded (completion: { error in
-                        didFetchContentForViewModelsAtIndex[index] = true
-                    })
-                })
+                didFinishLoadingData?()
                 
             }
     }

@@ -156,7 +156,6 @@ final class PostView: UIView {
         customViewContainer.cornerRadius(20, corners: [.topRight, .topLeft, .bottomLeft])
         if let customViewModel = customViewModel {
             let repostedView = ShareView(viewModel: customViewModel)
-            repostedView.engagementBannerNavigationDelegate = engagementBannerNavigationDelegate
             customViewContainer.fill(with: repostedView, insets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20))
             chatBubbleStackView.insertArrangedSubview(customViewContainer, at: 1)
         }

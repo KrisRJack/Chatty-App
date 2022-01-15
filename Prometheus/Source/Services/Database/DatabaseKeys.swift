@@ -64,9 +64,7 @@ public struct DatabaseKeys {
         case groupID = "groupID"
         case priority = "priority"
         case timestamp = "timestamp"
-        
-        case repostID = "repostID"
-        case repostGroupID = "repostGroupID"
+        case cellType = "cellType"
         
         case likes = "likes"
         case reposts = "reposts"
@@ -75,6 +73,18 @@ public struct DatabaseKeys {
         case numOfLikes = "numOfLikes"
         case numOfReposts = "numOfReposts"
         case numOfComments = "numOfComments"
+        
+        // Repost keys
+        
+        case repostID = "repostID"
+        case repostText = "repostText"
+        case repostUserID = "repostUserID"
+        case repostFirstName = "repostFirstName"
+        case repostLastName = "repostLastName"
+        case repostUsername = "repostUsername"
+        case repostGroupID = "repostGroupID"
+        case repostTimestamp = "repostTimestamp"
+        case repostCellType = "repostCellType"
     }
     
     public enum Like: String, DatabaseKeyType {

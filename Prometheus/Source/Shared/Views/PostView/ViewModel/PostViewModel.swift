@@ -17,7 +17,7 @@ final class PostViewModel: NSObject {
     public var reloadAt: ((_ indexPath: IndexPath) -> Void)?
     
 
-    public var textContent: String {
+    public var textContent: String? {
         post.text
     }
     
@@ -34,6 +34,9 @@ final class PostViewModel: NSObject {
     
     init(post model: Post) {
         post = model
+        if let repost = model.repost {
+            rePostViewModel = PostViewModel(post: repost)
+        }
         super.init()
     }
     

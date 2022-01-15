@@ -126,6 +126,7 @@
 		18E0848F2766282E00DDFD33 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0848E2766282E00DDFD33 /* SearchHeaderView.swift */; };
 		18E084942767799400DDFD33 /* GroupDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */; };
 		18F32F97276DF9AA00FD6D4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */; };
+		18FDFCA22791DB2400504B69 /* CustomCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDFCA12791DB2400504B69 /* CustomCellType.swift */; };
 		18FE4307278A0FFE00C3D414 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4306278A0FFE00C3D414 /* UIApplication.swift */; };
 		18FE4316278A6A4A00C3D414 /* EngagementBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */; };
 		18FE4318278A6A6500C3D414 /* EngagementBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4317278A6A6500C3D414 /* EngagementBannerViewModel.swift */; };
@@ -242,6 +243,7 @@
 		18E0848E2766282E00DDFD33 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailHeaderCell.swift; sourceTree = "<group>"; };
 		18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		18FDFCA12791DB2400504B69 /* CustomCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellType.swift; sourceTree = "<group>"; };
 		18FE4306278A0FFE00C3D414 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBanner.swift; sourceTree = "<group>"; };
 		18FE4317278A6A6500C3D414 /* EngagementBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBannerViewModel.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 		188CDB0B275C0E7C0008C41A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				18FDFCA02791DB1300504B69 /* Enum */,
 				186E3116275A3F4F00A1D477 /* Models */,
 				18C27CE2276CB29C00BE1714 /* Transitions */,
 				18C27CE6276CBF0C00BE1714 /* Typealias */,
@@ -947,6 +950,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		18FDFCA02791DB1300504B69 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				18FDFCA12791DB2400504B69 /* CustomCellType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		18FE430E278A697F00C3D414 /* EngagementBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,6 +1189,7 @@
 				188CDAFA275AEE640008C41A /* UITableViewCell.swift in Sources */,
 				188CDB1D275D02410008C41A /* ProfileNavigator.swift in Sources */,
 				188CDAF8275AECC20008C41A /* PostCell.swift in Sources */,
+				18FDFCA22791DB2400504B69 /* CustomCellType.swift in Sources */,
 				18C30A5A278FAC7300406519 /* ComposePreviewViewController.swift in Sources */,
 				188CDB28275D16650008C41A /* InboxNavigator.swift in Sources */,
 				180B0E3727763DC6004B281D /* UILabel.swift in Sources */,
