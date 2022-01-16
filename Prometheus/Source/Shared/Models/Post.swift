@@ -72,7 +72,7 @@ class Post {
             .numOfReposts: numOfReposts,
             .numOfComments: numOfComments
         ]
-        repostedDictionary.forEach({ dict[$0] = $1 })
+        repost?.asRepostedDictionary.forEach({ dict[$0] = $1 })
         return dict
     }
     
@@ -82,17 +82,17 @@ class Post {
         return dict
     }
     
-    var repostedDictionary: [DatabaseKeys.Post: Any?] {
+    var asRepostedDictionary: [DatabaseKeys.Post: Any?] {
         [
-            .repostID: repost?.id.rawValue,
-            .repostText: repost?.text,
-            .repostUserID: repost?.userID.rawValue,
-            .repostFirstName: repost?.firstName,
-            .repostLastName: repost?.lastName,
-            .repostUsername: repost?.username,
-            .repostGroupID: repost?.groupID,
-            .repostTimestamp: repost?.timestamp,
-            .repostCellType: repost?.cellType.rawValue
+            .repostID: id.rawValue,
+            .repostText: text,
+            .repostUserID: userID.rawValue,
+            .repostFirstName: firstName,
+            .repostLastName: lastName,
+            .repostUsername: username,
+            .repostGroupID: groupID,
+            .repostTimestamp: timestamp,
+            .repostCellType: cellType.rawValue
         ]
     }
     
