@@ -56,6 +56,46 @@ class Post {
         return DatabaseService.collection(.users).document(userID.rawValue)
     }
     
+    var asDictionary: [DatabaseKeys.Post: Any?] {
+        var dict: [DatabaseKeys.Post: Any?] = [
+            .id: id.rawValue,
+            .userID: userID.rawValue,
+            .firstName: firstName,
+            .lastName: lastName,
+            .username: username,
+            .groupID: groupID.rawValue,
+            .priority: priority,
+            .timestamp: timestamp,
+            .text: text,
+            .cellType: cellType.rawValue,
+            .numOfLikes: numOfLikes,
+            .numOfReposts: numOfReposts,
+            .numOfComments: numOfComments
+        ]
+        repostedDictionary.forEach({ dict[$0] = $1 })
+        return dict
+    }
+    
+    var asRawValueDictionary: [String: Any?] {
+        var dict: [String: Any?] = [:]
+        asDictionary.forEach({ dict[$0.rawValue] = $1 })
+        return dict
+    }
+    
+    var repostedDictionary: [DatabaseKeys.Post: Any?] {
+        [
+            .repostID: repost?.id.rawValue,
+            .repostText: repost?.text,
+            .repostUserID: repost?.userID.rawValue,
+            .repostFirstName: repost?.firstName,
+            .repostLastName: repost?.lastName,
+            .repostUsername: repost?.username,
+            .repostGroupID: repost?.groupID,
+            .repostTimestamp: repost?.timestamp,
+            .repostCellType: repost?.cellType.rawValue
+        ]
+    }
+    
     init(withData data: [String: Any]) {
         id = ID(rawValue: data[DatabaseKeys.Post.id.rawValue] as? String ?? "")
         userID = User.ID(rawValue: data[DatabaseKeys.Post.userID.rawValue] as? String ?? "")
