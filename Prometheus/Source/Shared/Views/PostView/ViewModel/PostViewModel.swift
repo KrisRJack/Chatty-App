@@ -40,26 +40,4 @@ final class PostViewModel: NSObject {
         super.init()
     }
     
-    
-    public func fetchContentIfNeeded(completion: ((_ error: Error?) -> Void)? = nil) {
-        guard let reference = post.repostedReference else {
-            completion?(nil)
-            return
-        }
-        reference.getDocument(completion: { snapshot, error in
-            if let _ = error {
-                completion?(error)
-                return
-            }
-            guard let snapshot = snapshot else {
-                completion?(nil)
-                return
-            }
-            if let data = snapshot.data() {
-                self.rePostViewModel = PostViewModel(post: Post(withData: data))
-                completion?(nil)
-            }
-        })
-    }
-    
 }
