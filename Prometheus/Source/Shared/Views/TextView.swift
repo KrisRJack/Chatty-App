@@ -60,7 +60,8 @@ class TextView: UITextView {
         textView.backgroundColor = .clear
         textView.frame.size = frame.size
         textView.textColor = .secondaryLabel
-        textView.text = "Type text here..." 
+        textView.text = "Type text here..."
+        UITextView.appearance().tintColor = .tertiaryTheme
         return textView
     }()
     
