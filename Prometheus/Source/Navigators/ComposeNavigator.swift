@@ -10,14 +10,18 @@ import UIKit
 final class ComposeNavigator: UINavigationController {
     
     init() {
-        let rootViewController = ComposeViewController()
+        let rootViewController = ComposeViewController(
+            viewModel: ComposeViewModel()
+        )
         super.init(rootViewController: rootViewController)
         rootViewController.navigationDelegate = self
         modalPresentationStyle = .overFullScreen
     }
     
     init(with viewModel: PostViewModel) {
-        let rootViewController = ComposeViewController(with: viewModel)
+        let rootViewController = ComposeViewController(
+            viewModel: ComposeViewModel(postViewModel: viewModel)
+        )
         super.init(rootViewController: rootViewController)
         rootViewController.navigationDelegate = self
         modalPresentationStyle = .overFullScreen

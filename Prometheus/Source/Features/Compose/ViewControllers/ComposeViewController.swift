@@ -19,27 +19,17 @@ final class ComposeViewController: UIViewController {
     public var navigationDelegate: ComposeNavigationDelegate?
     
     
+    private var viewModel: ComposeViewModel!
     private var tableViewBottomAnchor: NSLayoutConstraint!
-    private var tableViewCells: [UITableViewCell] = []
     
     
-    init() {
+    init(viewModel: ComposeViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        let cell = ComposeTextCell()
-        cell.textViewDelegate = self
-        tableViewCells.append(cell)
         setUpViews()
     }
     
-    
-    convenience init(with viewModel: PostViewModel) {
-        self.init()
-        let view = PostView(with: viewModel)
-        view.setProfileImageSize(to: 40)
-        tableViewCells.append(ComposeContainerCell(containedView: view))
-    }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,7 +46,6 @@ final class ComposeViewController: UIViewController {
         setUpNavigationBar()
         setUpTableView()
         addKeyboardObservers()
-        tableViewCells.first?.becomeFirstResponder()
     }
     
     
@@ -70,13 +59,13 @@ final class ComposeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableViewCells.first?.becomeFirstResponder()
+        tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.becomeFirstResponder()
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tableViewCells.first?.resignFirstResponder()
+        tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.resignFirstResponder()
     }
     
     
@@ -241,17 +230,33 @@ extension ComposeViewController: UITableViewDataSource {
     
     
     internal func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.numberOfSections
     }
     
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewCells.count
+        return viewModel.numberOfRowsInSection[section] ?? 0
     }
     
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableViewCells[indexPath.item]
+        let viewModelForCell = viewModel.viewModelForRow(at: indexPath)
+        switch viewModel.rowType(at: indexPath) {
+        case .repost:
+            
+            guard let viewModelForCell = viewModelForCell as? PostViewModel else { return UITableViewCell() }
+            let view = PostView(with: viewModelForCell)
+            view.setProfileImageSize(to: 40)
+            return ComposeContainerCell(containedView: view)
+
+        default:
+            
+            let cell = ComposeTextCell()
+            cell.textViewDelegate = self
+            cell.becomeFirstResponder()
+            return cell
+            
+        }
     }
     
     
