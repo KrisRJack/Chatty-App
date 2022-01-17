@@ -11,6 +11,9 @@ import UIKit
 final class PostView: UIView {
     
     
+    var viewModel: PostViewModel!
+    
+    
     public var engagementBannerNavigationDelegate: EngagementBannerNavigationDelegate? {
         get { engagementBanner.navigationDelegate }
         set { engagementBanner.navigationDelegate = newValue }
@@ -53,6 +56,7 @@ final class PostView: UIView {
         stackView.alignment = .fill
         stackView.clipsToBounds = true
         stackView.layer.borderWidth = 2
+        stackView.layoutMargins.top = 20
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.backgroundColor = .secondarySystemBackground
         stackView.cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
@@ -117,6 +121,7 @@ final class PostView: UIView {
     
     public func prepareForReuse() {
         resetArrangedSubviews()
+        removeTextContentIfNeeded(isEmpty: viewModel.isTextContentEmpty) 
     }
     
     
@@ -126,10 +131,12 @@ final class PostView: UIView {
     
     
     public func configure(with viewModel: PostViewModel) {
+        self.viewModel = viewModel
         primaryLabel.attributedStringForPost = viewModel.textContent
         headerView.configure(with: viewModel.postHeaderViewModel)
         engagementBanner.configure(with: viewModel.postFooterViewModel)
         addCustomViewIfNeeded(with: viewModel.rePostViewModel)
+        removeTextContentIfNeeded(isEmpty: viewModel.isTextContentEmpty)
     }
     
     
@@ -144,9 +151,16 @@ final class PostView: UIView {
     
     
     private func addSubviewsToView() {
-        primaryLabelView.fill(with: primaryLabel, insets: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: -20))
+        primaryLabelView.fill(with: primaryLabel, insets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20))
         engagementBannerView.fill(with: engagementBanner, insets: UIEdgeInsets(top: 12, left: 20, bottom: -12, right: -20))
         fill(with: stackView)
+    }
+    
+    
+    private func removeTextContentIfNeeded(isEmpty: Bool) {
+        if isEmpty {
+            chatBubbleStackView.removeArrangedSubview(primaryLabelView)
+        }
     }
     
     

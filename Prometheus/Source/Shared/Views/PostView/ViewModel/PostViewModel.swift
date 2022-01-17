@@ -10,8 +10,7 @@ import FirebaseFirestore
 final class PostViewModel: NSObject {
     
     
-    private var post: Post!
-    
+    public var post: Post!
     public var indexPath: IndexPath?
     public var rePostViewModel: PostViewModel?
     public var reloadAt: ((_ indexPath: IndexPath) -> Void)?
@@ -19,6 +18,11 @@ final class PostViewModel: NSObject {
 
     public var textContent: String? {
         post.text
+    }
+    
+    
+    public var isTextContentEmpty: Bool {
+        textContent?.isEmpty ?? true
     }
     
     
