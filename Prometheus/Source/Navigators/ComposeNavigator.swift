@@ -67,8 +67,8 @@ extension ComposeNavigator: ComposeNavigationDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func goToComposePreview() {
-        let viewController = ComposePreviewViewController()
+    func goToComposePreview(with preview: ComposePreviewViewModel) {
+        let viewController = ComposePreviewViewController(viewModel: preview)
         viewController.navigationDelegate = self
         pushViewController(viewController, animated: true)
     }

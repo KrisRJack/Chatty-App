@@ -126,6 +126,7 @@
 		18E0848F2766282E00DDFD33 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0848E2766282E00DDFD33 /* SearchHeaderView.swift */; };
 		18E084942767799400DDFD33 /* GroupDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */; };
 		18F32F97276DF9AA00FD6D4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */; };
+		18F486712795D1AD00E1B578 /* ComposePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F486702795D1AD00E1B578 /* ComposePreviewViewModel.swift */; };
 		18FDFCA22791DB2400504B69 /* CustomCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDFCA12791DB2400504B69 /* CustomCellType.swift */; };
 		18FE4307278A0FFE00C3D414 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4306278A0FFE00C3D414 /* UIApplication.swift */; };
 		18FE4316278A6A4A00C3D414 /* EngagementBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */; };
@@ -243,6 +244,7 @@
 		18E0848E2766282E00DDFD33 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailHeaderCell.swift; sourceTree = "<group>"; };
 		18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		18F486702795D1AD00E1B578 /* ComposePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewViewModel.swift; sourceTree = "<group>"; };
 		18FDFCA12791DB2400504B69 /* CustomCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellType.swift; sourceTree = "<group>"; };
 		18FE4306278A0FFE00C3D414 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBanner.swift; sourceTree = "<group>"; };
@@ -875,6 +877,7 @@
 		18C30A5E279042F700406519 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				18F486702795D1AD00E1B578 /* ComposePreviewViewModel.swift */,
 				18C30A5F2790430900406519 /* ComposeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1163,6 +1166,7 @@
 				188CDAFC275AEE730008C41A /* UICollectionViewCell.swift in Sources */,
 				18E084702762C72A00DDFD33 /* ComposeNavigator.swift in Sources */,
 				18919E9C27735AE1004F7D0D /* DocumentReference.swift in Sources */,
+				18F486712795D1AD00E1B578 /* ComposePreviewViewModel.swift in Sources */,
 				185E0DF02770B44A00FC663E /* UIFont.swift in Sources */,
 				186E309C27598E4600A1D477 /* GroupFeedViewController.swift in Sources */,
 				18BE8102275EDEBB0011DB5C /* GroupDetailsModel.swift in Sources */,

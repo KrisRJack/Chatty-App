@@ -9,7 +9,7 @@ import UIKit
 
 protocol ComposeNavigationDelegate {
     func dismiss()
-    func goToComposePreview()
+    func goToComposePreview(with preview: ComposePreviewViewModel)
 }
 
 final class ComposeViewController: UIViewController {
@@ -175,7 +175,7 @@ final class ComposeViewController: UIViewController {
             self.tableView.alpha = 0
         } completion: { didFinishAnimating in
             if didFinishAnimating {
-                self.navigationDelegate?.goToComposePreview()
+                self.navigationDelegate?.goToComposePreview(with: self.viewModel.preparePreviewViewModel())
             }
         }
     }
@@ -202,7 +202,7 @@ final class ComposeViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: tableView.layoutMargins.top, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
         tableView.register(ComposeTextCell.self, forCellReuseIdentifier: ComposeTextCell.reuseIdentifier)
     }
     
@@ -216,6 +216,7 @@ final class ComposeViewController: UIViewController {
 extension ComposeViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
+        viewModel.textDidChange(to: textView.text)
         tableView.beginUpdates()
         tableView.endUpdates()
     }

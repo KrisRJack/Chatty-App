@@ -5,7 +5,7 @@
 //  Created by Kristopher Jackson on 1/13/22.
 //
 
-import Foundation
+import FirebaseFirestore
 
 final class ComposeViewModel: NSObject {
     
@@ -15,8 +15,10 @@ final class ComposeViewModel: NSObject {
         case repost
     }
     
-    
+
+    private var text: String?
     private var rows: [CustomRowType] = []
+    private var cellType: CustomCellType = .none
     private var viewModelsAtIndex: [AnyObject?] = []
     
     
@@ -33,6 +35,7 @@ final class ComposeViewModel: NSObject {
     
     convenience init(postViewModel: PostViewModel) {
         self.init()
+        cellType = .repost
         rows.append(.repost)
         viewModelsAtIndex.append(postViewModel)
     }
@@ -45,6 +48,40 @@ final class ComposeViewModel: NSObject {
     
     public func viewModelForRow(at indexPath: IndexPath) -> AnyObject? {
         viewModelsAtIndex[indexPath.item]
+    }
+    
+    
+    public func textDidChange(to string: String?) {
+        text = string
+    }
+    
+    
+    public func preparePreviewViewModel() -> ComposePreviewViewModel {
+        var post: Post?
+        let timestamp = Date()
+        let priority = Int(Double(timestamp.timeIntervalSince1970))
+        
+        for (index, value) in rows.enumerated() {
+            if value == .repost {
+                if let postViewModel = viewModelsAtIndex[index] as? PostViewModel {
+                    post = postViewModel.post
+                }
+            }
+        }
+        
+        return ComposePreviewViewModel(post: Post(
+            id: "mockID",
+            userID: "mockUserID",
+            firstName: "Kris",
+            lastName: "Jackson",
+            username: "KrisRJack",
+            groupID: "mockGroupID",
+            priority: priority,
+            timestamp: timestamp,
+            text: text,
+            cellType: cellType,
+            repost: post
+        ))
     }
     
 }
