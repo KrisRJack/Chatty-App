@@ -170,7 +170,8 @@ final class ComposeViewController: UIViewController {
     
     
     private func animatedExit() {
-        self.view.endEditing(true)
+        view.endEditing(true)
+        Vibration.vibrate(with: .success)
         UIView.animate(withDuration: 0.2) {
             self.tableView.alpha = 0
         } completion: { didFinishAnimating in
