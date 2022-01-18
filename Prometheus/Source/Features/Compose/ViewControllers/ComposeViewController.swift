@@ -198,11 +198,10 @@ final class ComposeViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        tableView.keyboardDismissMode = .interactive
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: tableView.layoutMargins.top, right: 0)
         tableView.register(ComposeTextCell.self, forCellReuseIdentifier: ComposeTextCell.reuseIdentifier)
     }
     
