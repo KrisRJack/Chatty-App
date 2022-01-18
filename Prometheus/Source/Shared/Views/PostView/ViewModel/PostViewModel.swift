@@ -15,7 +15,11 @@ final class PostViewModel: NSObject {
     public var rePostViewModel: PostViewModel?
     public var reloadAt: ((_ indexPath: IndexPath) -> Void)?
     
-
+    
+    public var showMore: Bool {
+        post.cellType != CustomCellType.none
+    }
+    
     public var textContent: String? {
         post.text
     }

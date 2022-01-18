@@ -41,7 +41,7 @@ final class ShareView: UIView {
     
     private lazy var engagementStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            primaryLabelView
+            primaryLabel
         ])
         stackView.spacing = 20
         stackView.axis = .vertical
@@ -50,7 +50,7 @@ final class ShareView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.backgroundColor = .systemBackground
         stackView.cornerRadius(20, corners: [.topLeft, .bottomLeft, .bottomRight])
-        stackView.layoutMargins.bottom = stackView.layer.borderWidth + stackView.layoutMargins.bottom
+        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return stackView
     }()
     
@@ -70,6 +70,21 @@ final class ShareView: UIView {
         return label
     }()
     
+    private let secondaryLabelView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    
+    private let secondaryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "•••"
+        label.numberOfLines = 0
+        label.textColor = .tertiaryTheme
+        label.font = .preferredFont(forTextStyle: .body, weight: .black)
+        return label
+    }()
     
     private let footerView: UIView = {
         let view = UIView()
@@ -85,7 +100,6 @@ final class ShareView: UIView {
         viewModel = vm
         super.init(frame: .zero)
         configure(with: viewModel)
-        primaryLabelView.fill(with: primaryLabel, insets: UIEdgeInsets(top: 20, left: 20, bottom: -20, right: -20))
         fill(with: stackView)
     }
     
@@ -103,12 +117,23 @@ final class ShareView: UIView {
     }
     
     
+    // MARK: - Set Profile Image Height
+    
+    
+    public func setProfileImageSize(to size: CGFloat) {
+        headerView.profileImageHeight = size
+    }
+    
+    
     // MARK: - Private
     
     
     private func configure(with viewModel: PostViewModel) {
         primaryLabel.attributedStringForPost = viewModel.textContent
         headerView.configure(with: viewModel.postHeaderViewModel)
+        if viewModel.showMore {
+            engagementStackView.addArrangedSubview(secondaryLabel)
+        }
     }
     
     
