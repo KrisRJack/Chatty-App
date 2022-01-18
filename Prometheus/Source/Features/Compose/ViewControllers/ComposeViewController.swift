@@ -245,7 +245,7 @@ extension ComposeViewController: UITableViewDataSource {
         case .repost:
             
             guard let viewModelForCell = viewModelForCell as? PostViewModel else { return UITableViewCell() }
-            let view = PostView(with: viewModelForCell)
+            let view = ShareView(viewModel: viewModelForCell)
             view.setProfileImageSize(to: 40)
             return ComposeContainerCell(containedView: view)
 
