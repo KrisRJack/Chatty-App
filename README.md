@@ -10,6 +10,7 @@ To see more of my side projects, visit [krisrjack.com](https://www.krisrjack.com
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.light.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.post.light.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.post.repost.light.jpg" width="250px">&#160;
+<img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.preview.light.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/about.group.light.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/about.group.2.light.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/my.groups.light.jpg" width="250px">&#160;
@@ -24,6 +25,7 @@ To see more of my side projects, visit [krisrjack.com](https://www.krisrjack.com
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.dark.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.post.dark.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.post.repost.dark.jpg" width="250px">&#160;
+<img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/compose.preview.dark.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/about.group.dark.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/about.group.2.dark.jpg" width="250px">&#160;
 <img src="https://github.com/KrisRJack/Prometheus/blob/main/Screenshots/my.groups.dark.jpg" width="250px">&#160;
