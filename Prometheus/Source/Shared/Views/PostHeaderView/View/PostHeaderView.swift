@@ -74,7 +74,7 @@ class PostHeaderView: UIView {
             imageView,
             infoStackView
         ])
-        stackView.spacing = 8
+        stackView.spacing = 10
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fill

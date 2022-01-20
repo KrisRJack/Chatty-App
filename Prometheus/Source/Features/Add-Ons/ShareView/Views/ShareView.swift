@@ -23,7 +23,7 @@ final class ShareView: UIView {
             headerView,
             engagementStackView
         ])
-        stackView.spacing = 12
+        stackView.spacing = 20
         stackView.axis = .vertical
         stackView.alignment = .fill
         return stackView

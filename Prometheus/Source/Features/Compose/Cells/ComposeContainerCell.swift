@@ -15,7 +15,7 @@ final class ComposeContainerCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: ComposeContainerCell.reuseIdentifier)
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        contentView.fill(with: view, insets: UIEdgeInsets(top: 20, left: 64, bottom: 8, right: 0), considerMargins: true)
+        contentView.fill(with: view, insets: UIEdgeInsets(top: 20, left: 60, bottom: 8, right: 0), considerMargins: true)
     }
     
     override func prepareForReuse() {

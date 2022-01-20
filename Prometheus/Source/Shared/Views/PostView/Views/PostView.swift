@@ -42,7 +42,7 @@ final class PostView: UIView {
             headerView,
             chatBubbleStackView
         ])
-        stackView.spacing = 12
+        stackView.spacing = 20
         stackView.axis = .vertical
         stackView.alignment = .fill
         return stackView
@@ -121,7 +121,7 @@ final class PostView: UIView {
     
     public func prepareForReuse() {
         resetArrangedSubviews()
-        removeTextContentIfNeeded(isEmpty: viewModel.isTextContentEmpty) 
+        removeTextContentIfNeeded(isEmpty: viewModel.isTextContentEmpty)
     }
     
     
