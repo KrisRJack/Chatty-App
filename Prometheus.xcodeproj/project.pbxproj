@@ -127,8 +127,6 @@
 		18E084942767799400DDFD33 /* GroupDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */; };
 		18F32F97276DF9AA00FD6D4C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */; };
 		18F486712795D1AD00E1B578 /* ComposePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F486702795D1AD00E1B578 /* ComposePreviewViewModel.swift */; };
-		18F48675279656F800E1B578 /* ComposePreviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F48674279656F800E1B578 /* ComposePreviewHeaderView.swift */; };
-		18F4867727965C9C00E1B578 /* ComposePreviewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4867627965C9C00E1B578 /* ComposePreviewHeaderCell.swift */; };
 		18FDFCA22791DB2400504B69 /* CustomCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FDFCA12791DB2400504B69 /* CustomCellType.swift */; };
 		18FE4307278A0FFE00C3D414 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4306278A0FFE00C3D414 /* UIApplication.swift */; };
 		18FE4316278A6A4A00C3D414 /* EngagementBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */; };
@@ -247,8 +245,6 @@
 		18E084932767799400DDFD33 /* GroupDetailHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailHeaderCell.swift; sourceTree = "<group>"; };
 		18F32F96276DF9AA00FD6D4C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		18F486702795D1AD00E1B578 /* ComposePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewViewModel.swift; sourceTree = "<group>"; };
-		18F48674279656F800E1B578 /* ComposePreviewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewHeaderView.swift; sourceTree = "<group>"; };
-		18F4867627965C9C00E1B578 /* ComposePreviewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposePreviewHeaderCell.swift; sourceTree = "<group>"; };
 		18FDFCA12791DB2400504B69 /* CustomCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellType.swift; sourceTree = "<group>"; };
 		18FE4306278A0FFE00C3D414 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		18FE4315278A6A4A00C3D414 /* EngagementBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBanner.swift; sourceTree = "<group>"; };
@@ -911,7 +907,6 @@
 			isa = PBXGroup;
 			children = (
 				18E084742762E92E00DDFD33 /* ComposeTextView.swift */,
-				18F48674279656F800E1B578 /* ComposePreviewHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -920,7 +915,6 @@
 			isa = PBXGroup;
 			children = (
 				1879D9CD278BA8410097800E /* ComposeContainerCell.swift */,
-				18F4867627965C9C00E1B578 /* ComposePreviewHeaderCell.swift */,
 				18E084772762EAC700DDFD33 /* ComposeTextCell.swift */,
 			);
 			path = Cells;
@@ -1172,7 +1166,6 @@
 				188CDAFC275AEE730008C41A /* UICollectionViewCell.swift in Sources */,
 				18E084702762C72A00DDFD33 /* ComposeNavigator.swift in Sources */,
 				18919E9C27735AE1004F7D0D /* DocumentReference.swift in Sources */,
-				18F4867727965C9C00E1B578 /* ComposePreviewHeaderCell.swift in Sources */,
 				18F486712795D1AD00E1B578 /* ComposePreviewViewModel.swift in Sources */,
 				185E0DF02770B44A00FC663E /* UIFont.swift in Sources */,
 				186E309C27598E4600A1D477 /* GroupFeedViewController.swift in Sources */,
@@ -1208,7 +1201,6 @@
 				18E084942767799400DDFD33 /* GroupDetailHeaderCell.swift in Sources */,
 				183C719F276E126500878F88 /* DatabaseKeys.swift in Sources */,
 				186E309A27598E4600A1D477 /* SceneDelegate.swift in Sources */,
-				18F48675279656F800E1B578 /* ComposePreviewHeaderView.swift in Sources */,
 				18C30A58278FABD800406519 /* ProfileImageView.swift in Sources */,
 				186E311A275A3F8D00A1D477 /* User.swift in Sources */,
 				18E0848F2766282E00DDFD33 /* SearchHeaderView.swift in Sources */,

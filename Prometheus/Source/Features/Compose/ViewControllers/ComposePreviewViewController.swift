@@ -18,7 +18,7 @@ final class ComposePreviewViewController: UIViewController {
     private var viewModel: ComposePreviewViewModel!
     private let tableView: UITableView = UITableView()
     
-    private var primaryButtonHeight: CGFloat { 45 }
+    private var primaryButtonHeight: CGFloat { 50 }
     public var navigationDelegate: ComposePreviewNavigationDelegate?
     
     
@@ -80,6 +80,7 @@ final class ComposePreviewViewController: UIViewController {
         view.backgroundColor = .clear
         setUpViews()
         setUpTableView()
+        setUpNavigationBar()
     }
     
     
@@ -111,6 +112,9 @@ final class ComposePreviewViewController: UIViewController {
     
     // MARK: - Private
     
+    public func setUpNavigationBar() {
+        navigationItem.title = "Preview"
+    }
     
     private func animatedEntrance() {
         UIView.animate(withDuration: 1) {
@@ -157,7 +161,6 @@ final class ComposePreviewViewController: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: (70 + view.layoutMargins.bottom + primaryButtonHeight), right: 0)
-        tableView.register(ComposePreviewHeaderCell.self, forCellReuseIdentifier: ComposePreviewHeaderCell.reuseIdentifier)
     }
     
 }
@@ -175,15 +178,11 @@ extension ComposePreviewViewController: UITableViewDataSource {
     
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel.numberOfRowsInSection[section] ?? 0) + 1
+        return (viewModel.numberOfRowsInSection[section] ?? 0)
     }
     
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: ComposePreviewHeaderCell.reuseIdentifier, for: indexPath)
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
         (cell as? PostCell)?.configure(with: viewModel.viewModelForPost)
         return cell
