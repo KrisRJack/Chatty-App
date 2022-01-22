@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class PostDetailViewController: UIViewController {
+final class PostDetailViewController: UITableViewController {
     
     
     private var viewModel: PostViewModel!
@@ -33,7 +33,50 @@ final class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        setUpTableView()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    
+    // MARK: - UITableView Data Source
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
+        (cell as? PostCell)?.configure(with: viewModel)
+        return cell
+    }
+    
+    
+    // MARK: - PRIVATE
+    
+    
+    private func setUpTableView() {
+        tableView.separatorStyle = .none
+        tableView.separatorInset = .zero
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 80, right: 0)
+        tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseIdentifier)
     }
     
 }
