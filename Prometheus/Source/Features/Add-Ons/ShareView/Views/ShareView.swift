@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol ShareViewDelegate {
+    func didTap(for viewModel: PostViewModel)
+}
+
 final class ShareView: UIView {
     
     
     // MARK: - Properties
     
+    public var delegate: ShareViewDelegate?
     private var viewModel: PostViewModel!
     
     
@@ -55,13 +60,6 @@ final class ShareView: UIView {
     }()
     
     
-    private let primaryLabelView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
-    
     private let primaryLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -100,6 +98,7 @@ final class ShareView: UIView {
         viewModel = vm
         super.init(frame: .zero)
         configure(with: viewModel)
+        addTapGesture()
         fill(with: stackView)
     }
     
@@ -122,6 +121,20 @@ final class ShareView: UIView {
     
     public func setProfileImageSize(to size: CGFloat) {
         headerView.profileImageHeight = size
+    }
+    
+    
+    // MARK: - Add Tap Gesture
+    
+    
+    public func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapEngagementStackView))
+        engagementStackView.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    @objc private func didTapEngagementStackView() {
+        delegate?.didTap(for: viewModel)
     }
     
     

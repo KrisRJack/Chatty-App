@@ -61,6 +61,7 @@
 		186E311C275A3FC200A1D477 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E311B275A3FC200A1D477 /* Group.swift */; };
 		1879D9CE278BA8410097800E /* ComposeContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879D9CD278BA8410097800E /* ComposeContainerCell.swift */; };
 		1879D9D2278BB2240097800E /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879D9D1278BB2240097800E /* PostView.swift */; };
+		187C89C4279B94970079CDF3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187C89C3279B94970079CDF3 /* PostDetailViewController.swift */; };
 		188CDAF6275AE3A90008C41A /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF5275AE3A90008C41A /* CGFloat.swift */; };
 		188CDAF8275AECC20008C41A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF7275AECC20008C41A /* PostCell.swift */; };
 		188CDAFA275AEE640008C41A /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF9275AEE640008C41A /* UITableViewCell.swift */; };
@@ -191,6 +192,7 @@
 		186E311B275A3FC200A1D477 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		1879D9CD278BA8410097800E /* ComposeContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContainerCell.swift; sourceTree = "<group>"; };
 		1879D9D1278BB2240097800E /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		187C89C3279B94970079CDF3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		188CDAF5275AE3A90008C41A /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		188CDAF7275AECC20008C41A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		188CDAF9275AEE640008C41A /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				186E309B27598E4600A1D477 /* GroupFeedViewController.swift */,
+				187C89C3279B94970079CDF3 /* PostDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				18FE4316278A6A4A00C3D414 /* EngagementBanner.swift in Sources */,
 				185E0DE8276F5B6A00FC663E /* PostHeaderModel.swift in Sources */,
 				1879D9CE278BA8410097800E /* ComposeContainerCell.swift in Sources */,
+				187C89C4279B94970079CDF3 /* PostDetailViewController.swift in Sources */,
 				186E31082759A45F00A1D477 /* Array.swift in Sources */,
 				18F32F97276DF9AA00FD6D4C /* DatabaseService.swift in Sources */,
 				18BE810627605C430011DB5C /* ProfileHeaderView.swift in Sources */,

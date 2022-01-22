@@ -10,6 +10,7 @@ import UIKit
 final class PostCell: UITableViewCell {
     
     
+    public var delegate: PostViewDelegate?
     private let postView = PostView()
     
     
@@ -21,6 +22,7 @@ final class PostCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        postView.delegate = self
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.fill(with: postView, insets: UIEdgeInsets(top: 0, left: 0, bottom: -8, right: 0), considerMargins: true)
@@ -42,5 +44,13 @@ final class PostCell: UITableViewCell {
         postView.configure(with: viewModel)
     }
     
+    
+}
+
+extension PostCell: PostViewDelegate {
+    
+    func didTap(for viewModel: PostViewModel) {
+        delegate?.didTap(for: viewModel)
+    }
     
 }

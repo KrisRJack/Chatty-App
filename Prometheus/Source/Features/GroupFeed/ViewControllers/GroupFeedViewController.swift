@@ -11,6 +11,7 @@ import UIKit
 protocol GroupFeedNavigationDelegate {
     func goToMyGroups()
     func goToGroupDetails()
+    func goToPostDetails(with viewModel: PostViewModel)
     func presentErrorMessage(error: String)
 }
 
@@ -74,6 +75,7 @@ final class GroupFeedViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModel = viewModel.viewModelForCell(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifier, for: indexPath)
+        (cell as? PostCell)?.delegate = self
         (cell as? PostCell)?.engagementBannerNavigationDelegate = engagementBannerNavigationDelegate
         (cell as? PostCell)?.configure(with: viewModel)
         return cell
@@ -142,3 +144,11 @@ final class GroupFeedViewController: UITableViewController {
     
 }
 
+
+extension GroupFeedViewController: PostViewDelegate {
+    
+    func didTap(for viewModel: PostViewModel) {
+        navigationDelegate?.goToPostDetails(with: viewModel)
+    }
+    
+}

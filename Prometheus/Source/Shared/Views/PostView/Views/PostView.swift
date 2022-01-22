@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol PostViewDelegate {
+    func didTap(for viewModel: PostViewModel)
+}
+
 final class PostView: UIView {
     
     
     var viewModel: PostViewModel!
-    
+    public var delegate: PostViewDelegate?
     
     public var engagementBannerNavigationDelegate: EngagementBannerNavigationDelegate? {
         get { engagementBanner.navigationDelegate }
@@ -33,6 +37,7 @@ final class PostView: UIView {
         let view = EngagementBanner()
         view.textColor = .tertiaryTheme
         view.iconTintColor = .tertiaryTheme
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -94,6 +99,7 @@ final class PostView: UIView {
     
     init() {
         super.init(frame: .zero)
+        addTapGesture()
         addSubviewsToView()
         resetArrangedSubviews()
         backgroundColor = .clear
@@ -116,7 +122,20 @@ final class PostView: UIView {
     }
     
     
+    // MARK: - Objective C Functions
+    
+    
+    @objc private func didTapChatBubbleStackView() {
+        delegate?.didTap(for: viewModel)
+    }
+    
+    
     // MARK: - Public
+    
+    public func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapChatBubbleStackView))
+        primaryLabelView.addGestureRecognizer(tapGesture)
+    }
     
     
     public func prepareForReuse() {
@@ -170,9 +189,24 @@ final class PostView: UIView {
         customViewContainer.cornerRadius(20, corners: [.topRight, .topLeft, .bottomLeft])
         if let customViewModel = customViewModel {
             let repostedView = ShareView(viewModel: customViewModel)
+            repostedView.delegate = self
             customViewContainer.fill(with: repostedView, insets: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20))
             chatBubbleStackView.insertArrangedSubview(customViewContainer, at: 1)
         }
+    }
+    
+    
+}
+
+
+// MARK: - ShareViewDelegate
+
+
+extension PostView: ShareViewDelegate {
+    
+    
+    func didTap(for viewModel: PostViewModel) {
+        delegate?.didTap(for: viewModel)
     }
     
     

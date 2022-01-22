@@ -41,6 +41,11 @@ extension GroupFeedNavigator: TabCoordinatorDelegate {
 
 extension GroupFeedNavigator: GroupFeedNavigationDelegate {
     
+    func goToPostDetails(with viewModel: PostViewModel) {
+        let viewController = PostDetailViewController(viewModel: viewModel)
+        pushViewController(viewController, animated: true)
+    }
+    
     func goToMyGroups() {
         let viewController = MyGroupsViewController()
         viewController.navigationDelegate = self
