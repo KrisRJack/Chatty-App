@@ -73,6 +73,33 @@ final class SearchEngine: NSObject {
     }
     
     
+    public func query(
+        
+        for text: String,
+        in index: SearchEngine.Index,
+        withLimit limit: Int = 20,
+        _ completion: @escaping (_ response: SearchResponse?, _ error: Error?) -> Void
+        
+    ) {
+        
+        let indexName = IndexName(rawValue: index.rawValue)
+        let index = client.index(withName: indexName)
+        
+        var query = Query(text)
+        query.hitsPerPage = limit
+        
+        index.search(query: query) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+        
+    }
+    
+    
 }
 
 
