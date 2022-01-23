@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "AlgoliaSearchClient",
+        "repositoryURL": "https://github.com/algolia/algoliasearch-client-swift",
+        "state": {
+          "branch": null,
+          "revision": "790a852555c41f2e05c5d6c9f7688d07552ab245",
+          "version": "8.13.3"
+        }
+      },
+      {
         "package": "AppAuth",
         "repositoryURL": "https://github.com/openid/AppAuth-iOS.git",
         "state": {
@@ -170,6 +179,15 @@
           "branch": null,
           "revision": "0fff0d7505b5306348263ea64fcc561253bbeb21",
           "version": "5.12.2"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
+          "version": "1.4.2"
         }
       },
       {

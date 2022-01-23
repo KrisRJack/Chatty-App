@@ -62,6 +62,7 @@
 		1879D9CE278BA8410097800E /* ComposeContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879D9CD278BA8410097800E /* ComposeContainerCell.swift */; };
 		1879D9D2278BB2240097800E /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879D9D1278BB2240097800E /* PostView.swift */; };
 		187C89C4279B94970079CDF3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187C89C3279B94970079CDF3 /* PostDetailViewController.swift */; };
+		187C89C7279C98520079CDF3 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187C89C6279C98520079CDF3 /* SearchEngine.swift */; };
 		188CDAF6275AE3A90008C41A /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF5275AE3A90008C41A /* CGFloat.swift */; };
 		188CDAF8275AECC20008C41A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF7275AECC20008C41A /* PostCell.swift */; };
 		188CDAFA275AEE640008C41A /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188CDAF9275AEE640008C41A /* UITableViewCell.swift */; };
@@ -103,6 +104,7 @@
 		189A4B8D2767E0F500A393CC /* MessagePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A4B8C2767E0F500A393CC /* MessagePreviewView.swift */; };
 		189A4B902767E10C00A393CC /* MessagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A4B8F2767E10C00A393CC /* MessagePreviewCell.swift */; };
 		189A4B93276A159E00A393CC /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A4B92276A159E00A393CC /* MessagesViewController.swift */; };
+		18A3654B279DB21A0088D4A0 /* AlgoliaSearchClient in Frameworks */ = {isa = PBXBuildFile; productRef = 18A3654A279DB21A0088D4A0 /* AlgoliaSearchClient */; };
 		18BE80F8275E42AE0011DB5C /* GroupDetailsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE80F7275E42AE0011DB5C /* GroupDetailsNavigator.swift */; };
 		18BE80FA275E48F20011DB5C /* GroupImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE80F9275E48F20011DB5C /* GroupImageView.swift */; };
 		18BE80FC275E4D530011DB5C /* HashTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE80FB275E4D530011DB5C /* HashTagView.swift */; };
@@ -193,6 +195,7 @@
 		1879D9CD278BA8410097800E /* ComposeContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContainerCell.swift; sourceTree = "<group>"; };
 		1879D9D1278BB2240097800E /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		187C89C3279B94970079CDF3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		187C89C6279C98520079CDF3 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 		188CDAF5275AE3A90008C41A /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		188CDAF7275AECC20008C41A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		188CDAF9275AEE640008C41A /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				183C7180276E00A900878F88 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				188F257F2772C3E5004AABD7 /* RealmSwift in Frameworks */,
 				18919E85277357D6004F7D0D /* FirebaseAuthUI in Frameworks */,
+				18A3654B279DB21A0088D4A0 /* AlgoliaSearchClient in Frameworks */,
 				183C7198276E00A900878F88 /* FirebaseStorageSwift-Beta in Frameworks */,
 				183C7186276E00A900878F88 /* FirebaseCrashlytics in Frameworks */,
 				18919E89277357D6004F7D0D /* FirebaseEmailAuthUI in Frameworks */,
@@ -629,6 +633,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		187C89C5279C983D0079CDF3 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				187C89C6279C98520079CDF3 /* SearchEngine.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		188CDAF2275ADFFA0008C41A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +963,7 @@
 			isa = PBXGroup;
 			children = (
 				183C71A2276E129600878F88 /* Database */,
+				187C89C5279C983D0079CDF3 /* Search */,
 				18919E962773586C004F7D0D /* Storage */,
 			);
 			path = Services;
@@ -1036,6 +1049,7 @@
 				18919E90277357D6004F7D0D /* FirebaseOAuthUI */,
 				18919E92277357D6004F7D0D /* FirebasePhoneAuthUI */,
 				18919E94277357D6004F7D0D /* FirebaseStorageUI */,
+				18A3654A279DB21A0088D4A0 /* AlgoliaSearchClient */,
 			);
 			productName = Prometheus;
 			productReference = 186E309427598E4600A1D477 /* Prometheus.app */;
@@ -1114,6 +1128,7 @@
 				183C71A5276E678F00878F88 /* XCRemoteSwiftPackageReference "swift-tagged" */,
 				188F257B2772C3E5004AABD7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				18919E81277357D6004F7D0D /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
+				18A36549279DB21A0088D4A0 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */,
 			);
 			productRefGroup = 186E309527598E4600A1D477 /* Products */;
 			projectDirPath = "";
@@ -1172,6 +1187,7 @@
 				18F486712795D1AD00E1B578 /* ComposePreviewViewModel.swift in Sources */,
 				185E0DF02770B44A00FC663E /* UIFont.swift in Sources */,
 				186E309C27598E4600A1D477 /* GroupFeedViewController.swift in Sources */,
+				187C89C7279C98520079CDF3 /* SearchEngine.swift in Sources */,
 				18BE8102275EDEBB0011DB5C /* GroupDetailsModel.swift in Sources */,
 				18C27CE5276CB68F00BE1714 /* GroupFeedViewModel.swift in Sources */,
 				18C27CE8276CBF1C00BE1714 /* Typealias.swift in Sources */,
@@ -1638,6 +1654,14 @@
 				kind = branch;
 			};
 		};
+		18A36549279DB21A0088D4A0 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/algoliasearch-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1790,6 +1814,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 18919E81277357D6004F7D0D /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
 			productName = FirebaseStorageUI;
+		};
+		18A3654A279DB21A0088D4A0 /* AlgoliaSearchClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18A36549279DB21A0088D4A0 /* XCRemoteSwiftPackageReference "algoliasearch-client-swift" */;
+			productName = AlgoliaSearchClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
