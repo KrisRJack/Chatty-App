@@ -48,6 +48,31 @@ final class SearchEngine: NSObject {
         
     }
     
+    
+    public func remove(
+        
+        objectWithID objectID: String,
+        fromIndex index: SearchEngine.Index,
+        _ completion: @escaping (_ response: WaitableWrapper<ObjectDeletion>?, _ error: Error?) -> Void
+        
+    ) {
+        
+        let objectID = ObjectID(rawValue: objectID)
+        let indexName = IndexName(rawValue: index.rawValue)
+        let index = client.index(withName: indexName)
+        
+        index.deleteObject(withID: objectID, requestOptions: .none) { result in
+            switch result {
+            case .success(let response):
+                completion(response, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+        
+    }
+    
+    
 }
 
 
