@@ -94,4 +94,5 @@ iOSInjectionProject/
 # Add any other files to be ignored below
 
 **/.DS_Store
+Prometheus/Secrets/
 Prometheus/PropertyLists/GoogleService-Info.plist
