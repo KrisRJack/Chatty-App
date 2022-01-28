@@ -158,7 +158,7 @@ final class ComposeViewController: UIViewController {
         )
         
         navigationItem.title = "Shake to Post 👋"
-        navigationItem.backButtonTitle = "Shake to Edit 👈"
+        navigationItem.backButtonTitle = "Back"
     }
     
     
