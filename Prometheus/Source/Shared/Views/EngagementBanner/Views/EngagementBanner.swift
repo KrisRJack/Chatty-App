@@ -130,6 +130,7 @@ final class EngagementBanner: UIView {
     
     @objc private func repostButtonPressed() {
         guard let viewModelForPost = viewModel?.viewModelForPost else { return }
+        Vibration.vibrate(with: .soft)
         navigationDelegate?.performRepostNavigation(with: viewModelForPost)
     }
     
