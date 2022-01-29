@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 
 protocol LaunchNavigationDelegate {
+    func presentError(message: String)
     func goToMainController(with viewModel: LaunchViewModel)
 }
 
@@ -18,7 +20,7 @@ final class LaunchViewController: UIViewController {
     
     // MARK: - Properties
     
-    
+    private let disposeBag = DisposeBag()
     public var navigationDelegate: LaunchNavigationDelegate?
     private var viewModel: LaunchViewModel!
     
@@ -61,9 +63,19 @@ final class LaunchViewController: UIViewController {
         viewModel = vm
         super.init(nibName: nil, bundle: nil)
         setUpViews()
-        viewModel.didFinishLoadingData = { [self] in
-            navigationDelegate?.goToMainController(with: viewModel)
-        }
+        
+        viewModel
+            .didFinishFetchingInitialBatch
+            .filter({ $0 == true })
+            .subscribe(onNext: { [self] _ in
+                navigationDelegate?.goToMainController(with: viewModel)
+            }).disposed(by: disposeBag)
+        
+        viewModel
+            .presentErrorMessage
+            .subscribe(onNext: { [self] error in
+                navigationDelegate?.presentError(message: error)
+            }).disposed(by: disposeBag)
     }
     
     

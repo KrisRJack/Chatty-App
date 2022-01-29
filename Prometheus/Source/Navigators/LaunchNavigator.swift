@@ -52,4 +52,8 @@ extension LaunchNavigator: LaunchNavigationDelegate {
         UIApplication.keyWindow?.makeKeyAndVisible()
     }
     
+    func presentError(message: String) {
+        print(message)
+    }
+    
 }

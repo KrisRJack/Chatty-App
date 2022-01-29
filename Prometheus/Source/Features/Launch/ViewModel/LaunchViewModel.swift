@@ -5,16 +5,18 @@
 //  Created by Kristopher Jackson on 1/3/22.
 //
 
+import RxSwift
+import RxCocoa
 import FirebaseFirestore
 
 final class LaunchViewModel: NSObject {
     
     
     public var numberOfSections: Int { 1 }
-    public var didFinishLoadingData: (() -> Void)?
-    public var presentErrorMessage: ((_ error: String) -> Void)?
     public var numberOfRowsInSection: Int { cellViewModels.count }
     public var navigationTitle: String { group.hashtag.rawValue }
+    public var presentErrorMessage: PublishSubject<String> = PublishSubject<String>()
+    public var didFinishFetchingInitialBatch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     
     private var group: Group!
@@ -45,12 +47,12 @@ final class LaunchViewModel: NSObject {
             .getDocuments { [self] snapshot, error in
                 
                 if let error = error {
-                    presentErrorMessage?(error.localizedDescription)
+                    presentErrorMessage.onNext(error.localizedDescription)
                     return
                 }
                 
                 guard let snapshot = snapshot else {
-                    didFinishLoadingData?()
+                    didFinishFetchingInitialBatch.accept(true)
                     return
                 }
                 
@@ -62,8 +64,7 @@ final class LaunchViewModel: NSObject {
                     PostViewModel(post: Post(withData: document.data()))
                 })
                 
-                didFinishLoadingData?()
-                
+                didFinishFetchingInitialBatch.accept(true)
             }
     }
     
