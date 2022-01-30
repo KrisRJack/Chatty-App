@@ -35,14 +35,8 @@ final class PostViewModel: PostViewModelType {
     }
     
     
-    public var postHeaderViewModel: PostHeaderViewModel {
-        PostHeaderViewModel(post: post)
-    }
-    
-    
-    public var postFooterViewModel: EngagementBannerViewModel {
-        EngagementBannerViewModel(post: post, postViewModel: self)
-    }
+    public var postHeaderViewModel: PostHeaderViewModel!
+    public var postFooterViewModel: EngagementBannerViewModel!
     
     
     var comments: [Comment]!
@@ -55,6 +49,8 @@ final class PostViewModel: PostViewModelType {
         if let repost = model.repost {
             rePostViewModel = PostViewModel(post: repost)
         }
+        postHeaderViewModel = PostHeaderViewModel(post: post)
+        postFooterViewModel = EngagementBannerViewModel(post: post, postViewModel: self)
     }
     
     

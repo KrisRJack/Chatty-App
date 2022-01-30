@@ -22,8 +22,8 @@ protocol PostViewModelType {
     var customViewType: CustomCellType { get }
 
     
-    var postHeaderViewModel: PostHeaderViewModel { get }
-    var postFooterViewModel: EngagementBannerViewModel { get }
+    var postHeaderViewModel: PostHeaderViewModel! { get }
+    var postFooterViewModel: EngagementBannerViewModel! { get }
     
     
     var comments: [Comment]! { get }

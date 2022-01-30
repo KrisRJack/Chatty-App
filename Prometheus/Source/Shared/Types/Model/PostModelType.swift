@@ -6,6 +6,7 @@
 //
 
 import Tagged
+import RxCocoa
 import Foundation
 import FirebaseStorage
 import FirebaseFirestore
@@ -24,9 +25,9 @@ protocol PostModelType {
     var text: String? { get }
     var cellType: CustomCellType { get }
 
-    var numOfLikes: Int { get set }
-    var numOfReposts: Int { get set }
-    var numOfComments: Int { get set }
+    var numOfLikes: BehaviorRelay<Int> { get set }
+    var numOfReposts: BehaviorRelay<Int> { get set }
+    var numOfComments: BehaviorRelay<Int> { get set }
 
     var repost: PostModelType? { get }
     

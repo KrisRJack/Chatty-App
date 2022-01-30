@@ -5,6 +5,7 @@
 //  Created by Kristopher Jackson on 12/19/21.
 //
 
+import RxCocoa
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -18,29 +19,23 @@ final class EngagementBannerViewModel: NSObject {
     }
     
     
-    public var viewModelForPost: PostViewModelType!
-    
-    
-    public var likeCountStringValue: ((String) -> Void)?
-    public var repostCountStringValue: ((String) -> Void)?
-    public var commentCountStringValue: ((String) -> Void)?
-    
-    
-    public var addObserverToLikeButtonSelectedState: (() -> Bool)?
-    public var addObserverToRepostButtonSelectedState: (() -> Bool)?
-    public var addObserverToCommentButtonSelectedState: (() -> Bool)?
-    
-    
-    public var likeButtonSelectedState: ((_ isSelected: Bool) -> Void)?
-    public var repostButtonSelectedState: ((_ isSelected: Bool) -> Void)?
-    public var commentButtonSelectedState: ((_ isSelected: Bool) -> Void)?
-    public var presentErrorMessage: ((_ errorMessage: String) -> Void)?
-    
-    
     private var post: PostModelType!
-    private var likeButtonIsSelected: Bool { addObserverToLikeButtonSelectedState?() ?? false }
-    private var repostButtonIsSelected: Bool { addObserverToRepostButtonSelectedState?() ?? false }
-    private var commentButtonIsSelected: Bool { addObserverToCommentButtonSelectedState?() ?? false }
+    
+    
+    public var viewModelForPost: PostViewModelType!
+    public var didLoadData: BehaviorRelay<Bool> = .init(value: false)
+    public var presentErrorMessage: PublishRelay<String> = PublishRelay<String>()
+    
+    
+    public var numberOfLikes: BehaviorRelay<Int> { post.numOfLikes }
+    public var numberOfReposts: BehaviorRelay<Int> { post.numOfReposts }
+    public var numberOfComments: BehaviorRelay<Int> { post.numOfComments }
+    
+    
+    public var likeButtonIsSelected: BehaviorRelay<Bool> = .init(value: false)
+    public var repostButtonIsSelected: BehaviorRelay<Bool> = .init(value: false)
+    public var commentButtonIsSelected: BehaviorRelay<Bool> = .init(value: false)
+    
     
     init(post model: PostModelType) {
         post = model
@@ -57,9 +52,7 @@ final class EngagementBannerViewModel: NSObject {
         loadSelectedState(forButton: .like)
         loadSelectedState(forButton: .repost)
         loadSelectedState(forButton: .comment)
-        likeCountStringValue?(post.numOfLikes.roundedWithAbbreviations)
-        repostCountStringValue?(post.numOfReposts.roundedWithAbbreviations)
-        commentCountStringValue?(post.numOfComments.roundedWithAbbreviations)
+        didLoadData.accept(true)
     }
     
     
@@ -67,16 +60,16 @@ final class EngagementBannerViewModel: NSObject {
         let reference = collectionReference(forButton: button)
         
         guard let currentUser = Auth.auth().currentUser else {
-            self.presentErrorMessage?("User does not exist. Please sign into an account to continue.")
+            self.presentErrorMessage.accept("User does not exist. Please sign into an account to continue.")
             return
         }
         
         reference.document(currentUser.uid).getDocument { snapshot, error in
             if let error = error {
-                self.presentErrorMessage?(error.localizedDescription)
+                self.presentErrorMessage.accept(error.localizedDescription)
                 return
             }
-            self.sendButtonState(button)?(snapshot?.exists ?? false)
+            self.sendButtonState(button).accept(snapshot?.exists ?? false)
         }
     }
     
@@ -84,20 +77,19 @@ final class EngagementBannerViewModel: NSObject {
     public func likeButtonTapped() {
         
         guard let currentUser = Auth.auth().currentUser else {
-            self.presentErrorMessage?("User does not exist. Please sign into an account to continue.")
+            self.presentErrorMessage.accept("User does not exist. Please sign into an account to continue.")
             return
         }
         
-        if likeButtonIsSelected {
+        if likeButtonIsSelected.value {
             
             post.collectionOfLikes.document(currentUser.uid).delete { error in
                 if error != nil {
-                    self.presentErrorMessage?("There was an error unliking this post. It could be because the user has deleted it.")
+                    self.presentErrorMessage.accept("There was an error unliking this post. It could be because the user has deleted it.")
                     return
                 }
-                self.post.numOfLikes -= 1
-                self.likeButtonSelectedState?(!self.likeButtonIsSelected)
-                self.likeCountStringValue?(self.post.numOfLikes.roundedWithAbbreviations)
+                self.post.numOfLikes.accept(self.post.numOfLikes.value - 1)
+                self.likeButtonIsSelected.accept(!self.likeButtonIsSelected.value)
                 self.post.reference.setData([DatabaseKeys.Post.numOfLikes.rawValue: FieldValue.increment(Int64(-1))], merge: true)
             }
             
@@ -113,12 +105,11 @@ final class EngagementBannerViewModel: NSObject {
     
             ).asDictionary, merge: true) { error in
                 if error != nil {
-                    self.presentErrorMessage?("There was an error liking this post. It could be because the user has deleted it.")
+                    self.presentErrorMessage.accept("There was an error liking this post. It could be because the user has deleted it.")
                     return
                 }
-                self.post.numOfLikes += 1
-                self.likeButtonSelectedState?(!self.likeButtonIsSelected)
-                self.likeCountStringValue?(self.post.numOfLikes.roundedWithAbbreviations)
+                self.post.numOfLikes.accept(self.post.numOfLikes.value + 1)
+                self.likeButtonIsSelected.accept(!self.likeButtonIsSelected.value)
                 self.post.reference.setData([DatabaseKeys.Post.numOfLikes.rawValue: FieldValue.increment(Int64(1))], merge: true)
             }
             
@@ -142,14 +133,14 @@ final class EngagementBannerViewModel: NSObject {
     }
     
     
-    private func sendButtonState(_ button: ButtonType) -> ((_ isSelected: Bool) -> Void)? {
+    private func sendButtonState(_ button: ButtonType) -> BehaviorRelay<Bool> {
         switch button {
         case .like:
-            return likeButtonSelectedState
+            return likeButtonIsSelected
         case .repost:
-            return repostButtonSelectedState
+            return repostButtonIsSelected
         case .comment:
-            return commentButtonSelectedState
+            return commentButtonIsSelected
         }
     }
     

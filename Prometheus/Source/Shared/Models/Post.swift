@@ -7,6 +7,7 @@
 
 import FirebaseStorage
 import FirebaseFirestore
+import RxCocoa
 import Tagged
 
 class Post: PostModelType {
@@ -23,9 +24,9 @@ class Post: PostModelType {
     var text: String?
     var cellType: CustomCellType
     
-    var numOfLikes: Int = 0
-    var numOfReposts: Int = 0
-    var numOfComments: Int = 0
+    var numOfLikes: BehaviorRelay<Int> = .init(value: 0)
+    var numOfReposts: BehaviorRelay<Int> = .init(value: 0)
+    var numOfComments: BehaviorRelay<Int> = .init(value: 0)
     
     var repost: PostModelType?
     
@@ -133,9 +134,10 @@ class Post: PostModelType {
         self.timestamp = timestamp
         self.text = text
         self.cellType = cellType
-        self.numOfLikes = numOfLikes
-        self.numOfReposts = numOfReposts
-        self.numOfComments = numOfComments
+        
+        self.numOfLikes.accept(numOfLikes)
+        self.numOfReposts.accept(numOfReposts)
+        self.numOfComments.accept(numOfComments)
         
         self.repost = repost
     }
@@ -153,9 +155,9 @@ class Post: PostModelType {
         timestamp = (data[DatabaseKeys.Post.timestamp.rawValue] as? Timestamp)?.dateValue() ?? Date()
         cellType = CustomCellType(rawValue: data[DatabaseKeys.Post.cellType.rawValue] as? Int ?? 0) ?? CustomCellType.none
         
-        numOfLikes = data[DatabaseKeys.Post.numOfLikes.rawValue] as? Int ?? 0
-        numOfComments = data[DatabaseKeys.Post.numOfComments.rawValue] as? Int ?? 0
-        numOfReposts = data[DatabaseKeys.Post.numOfReposts.rawValue] as? Int ?? 0
+        numOfLikes.accept(data[DatabaseKeys.Post.numOfLikes.rawValue] as? Int ?? 0)
+        numOfComments.accept(data[DatabaseKeys.Post.numOfComments.rawValue] as? Int ?? 0)
+        numOfReposts.accept(data[DatabaseKeys.Post.numOfReposts.rawValue] as? Int ?? 0)
         
         repost = cellType == .repost ? Post(withDataForRepost: data) : nil
     }

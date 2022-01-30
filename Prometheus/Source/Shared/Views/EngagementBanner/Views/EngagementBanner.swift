@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol EngagementBannerNavigationDelegate {
     func performRepostNavigation(with viewModel: PostViewModelType)
@@ -13,7 +15,7 @@ protocol EngagementBannerNavigationDelegate {
 
 final class EngagementBanner: UIView {
     
-    
+    private let disposeBag = DisposeBag()
     private var viewModel: EngagementBannerViewModel?
     public var navigationDelegate: EngagementBannerNavigationDelegate?
     
@@ -124,6 +126,7 @@ final class EngagementBanner: UIView {
     
     
     @objc private func likeButtonPressed() {
+        Vibration.vibrate(with: .soft)
         viewModel?.likeButtonTapped()
     }
     
@@ -151,19 +154,35 @@ final class EngagementBanner: UIView {
     public func configure(with viewModel: EngagementBannerViewModel) {
         self.viewModel = viewModel
         
-        viewModel.likeCountStringValue = ({ self.likeButton.text = $0 })
-        viewModel.repostCountStringValue = ({ self.repostButton.text = $0 })
-        viewModel.commentCountStringValue = ({ self.commentButton.text = $0 })
+        viewModel.likeButtonIsSelected.bind(onNext: {
+            self.likeButton.isSelected = $0
+        }).disposed(by: disposeBag)
         
-        viewModel.likeButtonSelectedState = ({ self.likeButton.isSelected = $0 })
-        viewModel.repostButtonSelectedState = ({ self.repostButton.isSelected = $0 })
-        viewModel.commentButtonSelectedState = ({ self.commentButton.isSelected = $0 })
+        viewModel.repostButtonIsSelected.bind(onNext: {
+            self.repostButton.isSelected = $0
+        }).disposed(by: disposeBag)
         
-        viewModel.addObserverToLikeButtonSelectedState = ({ self.likeButton.isSelected })
-        viewModel.addObserverToRepostButtonSelectedState = ({ self.repostButton.isSelected })
-        viewModel.addObserverToCommentButtonSelectedState = ({ self.commentButton.isSelected })
+        viewModel.commentButtonIsSelected.bind(onNext: {
+            self.commentButton.isSelected = $0
+        }).disposed(by: disposeBag)
         
-        viewModel.loadInitialData()
+        viewModel.numberOfLikes.bind(onNext: {
+            self.likeButton.text = $0.roundedWithAbbreviations
+        }).disposed(by: disposeBag)
+        
+        viewModel.numberOfReposts.bind(onNext: {
+            self.repostButton.text = $0.roundedWithAbbreviations
+        }).disposed(by: disposeBag)
+        
+        viewModel.numberOfComments.bind(onNext: {
+            self.commentButton.text = $0.roundedWithAbbreviations
+        }).disposed(by: disposeBag)
+        
+        viewModel
+            .didLoadData
+            .filter({ $0 == false })
+            .bind(onNext: { _ in viewModel.loadInitialData() } )
+            .disposed(by: disposeBag)
     }
     
 }
