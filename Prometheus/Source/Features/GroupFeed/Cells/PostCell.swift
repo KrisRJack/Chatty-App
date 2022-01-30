@@ -40,7 +40,7 @@ final class PostCell: UITableViewCell {
     }
     
     
-    public func configure(with viewModel: PostViewModel) {
+    public func configure(with viewModel: PostViewModelType) {
         postView.configure(with: viewModel)
     }
     
@@ -49,7 +49,7 @@ final class PostCell: UITableViewCell {
 
 extension PostCell: PostViewDelegate {
     
-    func didTap(for viewModel: PostViewModel) {
+    func didTap(for viewModel: PostViewModelType) {
         delegate?.didTap(for: viewModel)
     }
     

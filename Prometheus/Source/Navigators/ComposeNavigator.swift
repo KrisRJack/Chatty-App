@@ -18,7 +18,7 @@ final class ComposeNavigator: UINavigationController {
         modalPresentationStyle = .overFullScreen
     }
     
-    init(with viewModel: PostViewModel) {
+    init(with viewModel: PostViewModelType) {
         let rootViewController = ComposeViewController(
             viewModel: ComposeViewModel(postViewModel: viewModel)
         )

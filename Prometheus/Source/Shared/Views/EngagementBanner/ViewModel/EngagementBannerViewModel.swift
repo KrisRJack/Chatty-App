@@ -18,7 +18,7 @@ final class EngagementBannerViewModel: NSObject {
     }
     
     
-    public var viewModelForPost: PostViewModel!
+    public var viewModelForPost: PostViewModelType!
     
     
     public var likeCountStringValue: ((String) -> Void)?
@@ -37,17 +37,17 @@ final class EngagementBannerViewModel: NSObject {
     public var presentErrorMessage: ((_ errorMessage: String) -> Void)?
     
     
-    private var post: Post!
+    private var post: PostModelType!
     private var likeButtonIsSelected: Bool { addObserverToLikeButtonSelectedState?() ?? false }
     private var repostButtonIsSelected: Bool { addObserverToRepostButtonSelectedState?() ?? false }
     private var commentButtonIsSelected: Bool { addObserverToCommentButtonSelectedState?() ?? false }
     
-    init(post model: Post) {
+    init(post model: PostModelType) {
         post = model
         viewModelForPost = PostViewModel(post: model)
     }
     
-    init(post model: Post, postViewModel: PostViewModel) {
+    init(post model: PostModelType, postViewModel: PostViewModelType) {
         post = model
         viewModelForPost = postViewModel
     }
@@ -90,7 +90,7 @@ final class EngagementBannerViewModel: NSObject {
         
         if likeButtonIsSelected {
             
-            post.likesCollection.document(currentUser.uid).delete { error in
+            post.collectionOfLikes.document(currentUser.uid).delete { error in
                 if error != nil {
                     self.presentErrorMessage?("There was an error unliking this post. It could be because the user has deleted it.")
                     return
@@ -103,7 +103,7 @@ final class EngagementBannerViewModel: NSObject {
             
         } else {
             
-            post.likesCollection.document(currentUser.uid).setData(LikeModel(
+            post.collectionOfLikes.document(currentUser.uid).setData(LikeModel(
                 
                 id: LikeModel.ID(rawValue: currentUser.uid),
                 userID: User.ID(rawValue: currentUser.uid),
@@ -133,11 +133,11 @@ final class EngagementBannerViewModel: NSObject {
     private func collectionReference(forButton button: ButtonType) -> CollectionReference {
         switch button {
         case .like:
-            return post.likesCollection
+            return post.collectionOfLikes
         case .repost:
-            return post.repostsCollection
+            return post.collectionOfReposts
         case .comment:
-            return post.commentsCollection
+            return post.collectionOfComments
         }
     }
     

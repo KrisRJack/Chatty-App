@@ -9,13 +9,13 @@
 import UIKit
 
 protocol PostViewDelegate {
-    func didTap(for viewModel: PostViewModel)
+    func didTap(for viewModel: PostViewModelType)
 }
 
 final class PostView: UIView {
     
     
-    var viewModel: PostViewModel!
+    var viewModel: PostViewModelType!
     public var delegate: PostViewDelegate?
     
     public var engagementBannerNavigationDelegate: EngagementBannerNavigationDelegate? {
@@ -106,7 +106,7 @@ final class PostView: UIView {
     }
     
     
-    convenience init(with viewModel: PostViewModel) {
+    convenience init(with viewModel: PostViewModelType) {
         self.init()
         configure(with: viewModel)
     }
@@ -149,9 +149,9 @@ final class PostView: UIView {
     }
     
     
-    public func configure(with viewModel: PostViewModel) {
+    public func configure(with viewModel: PostViewModelType) {
         self.viewModel = viewModel
-        primaryLabel.attributedStringForPost = viewModel.textContent
+        primaryLabel.attributedStringForPost = viewModel.text
         headerView.configure(with: viewModel.postHeaderViewModel)
         engagementBanner.configure(with: viewModel.postFooterViewModel)
         addCustomViewIfNeeded(with: viewModel.rePostViewModel)
@@ -183,7 +183,7 @@ final class PostView: UIView {
     }
     
     
-    private func addCustomViewIfNeeded(with customViewModel: PostViewModel?) {
+    private func addCustomViewIfNeeded(with customViewModel: PostViewModelType?) {
         let customViewContainer: UIView = UIView()
         customViewContainer.backgroundColor = .clear
         customViewContainer.cornerRadius(20, corners: [.topRight, .topLeft, .bottomLeft])
@@ -205,7 +205,7 @@ final class PostView: UIView {
 extension PostView: ShareViewDelegate {
     
     
-    func didTap(for viewModel: PostViewModel) {
+    func didTap(for viewModel: PostViewModelType) {
         delegate?.didTap(for: viewModel)
     }
     

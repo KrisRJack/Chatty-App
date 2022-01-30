@@ -26,8 +26,9 @@ class PostHeaderView: UIView {
     
     
     public lazy var imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "mockProfileImage"))
+        let imageView = UIImageView()
         imageView.clipsToBounds = true
+        imageView.tintColor = .secondaryLabel
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .secondarySystemBackground
         imageView.layer.cornerRadius = profileImageHeight.halfOf
@@ -116,7 +117,7 @@ class PostHeaderView: UIView {
         ].activate()
         
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).activate()
-        imageViewHeighAnchor = imageView.widthAnchor.constraint(lessThanOrEqualToConstant: profileImageHeight)
+        imageViewHeighAnchor = imageView.widthAnchor.constraint(equalToConstant: profileImageHeight)
         imageViewHeighAnchor?.activate()
     }
     
@@ -132,6 +133,10 @@ class PostHeaderView: UIView {
     public func configure(with viewModel: PostHeaderViewModel) {
         headerLabel.text =  viewModel.headerString
         subHeaderLabel.text = viewModel.subHeaderString
+        imageView.sd_setImage(
+            with: viewModel.imageReference,
+            placeholderImage: UIImage(systemName: "person.crop.circle.fill")
+        )
     }
     
     

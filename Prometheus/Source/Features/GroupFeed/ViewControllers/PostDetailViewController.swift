@@ -11,13 +11,13 @@ import UIKit
 final class PostDetailViewController: UITableViewController {
     
     
-    private var viewModel: PostViewModel!
+    private var viewModel: PostViewModelType!
     
     
     // MARK: - Init
     
     
-    init(viewModel: PostViewModel) {
+    init(viewModel: PostViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

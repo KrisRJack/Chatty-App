@@ -11,13 +11,14 @@ import Tagged
 struct User {
     typealias ID = Tagged<User, String>
     typealias Username = Tagged<User, String>
+    typealias ImageJPGName = Tagged<User, String>
     
     let id: ID
     let email: String
     let firstName: String
     let lastName: String
     let username: Username
-    let imageJPGName: String
+    let imageJPGName: ImageJPGName
     let created: Date
     let dateOfBirth: Date
     

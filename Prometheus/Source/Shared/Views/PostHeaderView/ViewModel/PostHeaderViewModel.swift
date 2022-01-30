@@ -5,13 +5,12 @@
 //  Created by Kristopher Jackson on 12/19/21.
 //
 
+import Foundation
 import FirebaseStorage
 
 final class PostHeaderViewModel: NSObject {
     
-    public var presentErrorMessage: ((_ errorMessage: String) -> Void)?
-    
-    private var post: Post!
+    private var post: PostModelType!
     
     public var headerString: String {
         post.firstName + " " + post.lastName
@@ -21,33 +20,12 @@ final class PostHeaderViewModel: NSObject {
         post.username + " • " + post.timestamp.getElapsedInterval()
     }
     
-    init(post model: Post) {
-        post = model
-        super.init()
-        loadInitialData()
+    public var imageReference: StorageReference {
+        post.referenceToProfileImage
     }
     
-    
-    // MARK: - PRIVATE
-    
-    
-    private func loadInitialData() {
-        post.userReference.getDocument { snapshot, error in
-            if let error = error {
-                self.presentErrorMessage?("Unable to load profile image.")
-                print(error.localizedDescription)
-                return
-            }
-            
-            guard let snapshot = snapshot else {
-                self.presentErrorMessage?("User does not exist or may have been deleted.")
-                return
-            }
-            
-//            let imageReference =
-            
-        }
-        
+    init(post model: PostModelType) {
+        post = model
     }
     
 }

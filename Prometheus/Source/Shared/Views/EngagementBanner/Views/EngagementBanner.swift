@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EngagementBannerNavigationDelegate {
-    func performRepostNavigation(with viewModel: PostViewModel)
+    func performRepostNavigation(with viewModel: PostViewModelType)
 }
 
 final class EngagementBanner: UIView {

@@ -19,7 +19,7 @@ final class ComposeViewModel: NSObject {
     private var text: String?
     private var rows: [CustomRowType] = []
     private var cellType: CustomCellType = .none
-    private var viewModelsAtIndex: [AnyObject?] = []
+    private var viewModelsAtIndex: [Any?] = []
     
     
     public var numberOfSections: Int { 1 }
@@ -33,7 +33,7 @@ final class ComposeViewModel: NSObject {
     }
     
     
-    convenience init(postViewModel: PostViewModel) {
+    convenience init(postViewModel: PostViewModelType) {
         self.init()
         cellType = .repost
         rows.append(.repost)
@@ -46,7 +46,7 @@ final class ComposeViewModel: NSObject {
     }
     
     
-    public func viewModelForRow(at indexPath: IndexPath) -> AnyObject? {
+    public func viewModelForRow(at indexPath: IndexPath) -> Any? {
         viewModelsAtIndex[indexPath.item]
     }
     
@@ -57,7 +57,7 @@ final class ComposeViewModel: NSObject {
     
     
     public func preparePreviewViewModel() -> ComposePreviewViewModel {
-        var post: Post?
+        var post: PostModelType?
         let timestamp = Date()
         let priority = Int(Double(timestamp.timeIntervalSince1970))
         
@@ -75,6 +75,7 @@ final class ComposeViewModel: NSObject {
             firstName: "Kris",
             lastName: "Jackson",
             username: "KrisRJack",
+            profileImage: "mockProfileImage",
             groupID: "mockGroupID",
             priority: priority,
             timestamp: timestamp,

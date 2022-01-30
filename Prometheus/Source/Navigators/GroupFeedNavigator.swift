@@ -41,7 +41,7 @@ extension GroupFeedNavigator: TabCoordinatorDelegate {
 
 extension GroupFeedNavigator: GroupFeedNavigationDelegate {
     
-    func goToPostDetails(with viewModel: PostViewModel) {
+    func goToPostDetails(with viewModel: PostViewModelType) {
         let viewController = PostDetailViewController(viewModel: viewModel)
         pushViewController(viewController, animated: true)
     }
@@ -81,7 +81,7 @@ extension GroupFeedNavigator: GroupDetailsNavigationDelegate {
 
 extension GroupFeedNavigator: EngagementBannerNavigationDelegate {
     
-    func performRepostNavigation(with viewModel: PostViewModel) {
+    func performRepostNavigation(with viewModel: PostViewModelType) {
         let viewController = ComposeNavigator(with: viewModel)
         present(viewController, animated: true, completion: nil)
     }

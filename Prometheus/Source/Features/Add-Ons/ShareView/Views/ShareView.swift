@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ShareViewDelegate {
-    func didTap(for viewModel: PostViewModel)
+    func didTap(for viewModel: PostViewModelType)
 }
 
 final class ShareView: UIView {
@@ -17,7 +17,7 @@ final class ShareView: UIView {
     // MARK: - Properties
     
     public var delegate: ShareViewDelegate?
-    private var viewModel: PostViewModel!
+    private var viewModel: PostViewModelType!
     
     
     // MARK: - Views
@@ -94,7 +94,7 @@ final class ShareView: UIView {
     // MARK: - Init
     
     
-    required init(viewModel vm: PostViewModel) {
+    required init(viewModel vm: PostViewModelType) {
         viewModel = vm
         super.init(frame: .zero)
         configure(with: viewModel)
@@ -141,10 +141,10 @@ final class ShareView: UIView {
     // MARK: - Private
     
     
-    private func configure(with viewModel: PostViewModel) {
-        primaryLabel.attributedStringForPost = viewModel.textContent
+    private func configure(with viewModel: PostViewModelType) {
+        primaryLabel.attributedStringForPost = viewModel.text
         headerView.configure(with: viewModel.postHeaderViewModel)
-        if viewModel.showMore {
+        if viewModel.doesContainCustomView {
             engagementStackView.addArrangedSubview(secondaryLabel)
         }
     }

@@ -9,13 +9,13 @@ import Foundation
 
 final class ComposePreviewViewModel: NSObject {
     
-    private var post: Post!
+    private var post: PostModelType!
     
     public var numberOfSections: Int { 1 }
-    public var viewModelForPost: PostViewModel!
+    public var viewModelForPost: PostViewModelType!
     public var numberOfRowsInSection: [Int : Int] { [0: 1] }
     
-    init(post: Post) {
+    init(post: PostModelType) {
         self.post = post
         self.viewModelForPost = PostViewModel(post: post)
         super.init()

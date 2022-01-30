@@ -5,28 +5,33 @@
 //  Created by Kristopher Jackson on 12/17/21.
 //
 
+import RxSwift
 import FirebaseFirestore
 
-final class PostViewModel: NSObject {
+final class PostViewModel: PostViewModelType {
     
     
-    public var post: Post!
-    public var indexPath: IndexPath?
-    public var rePostViewModel: PostViewModel?
-    public var reloadAt: ((_ indexPath: IndexPath) -> Void)?
+    public var post: PostModelType!
+    public var rePostViewModel: PostViewModelType?
     
     
-    public var showMore: Bool {
-        post.cellType != CustomCellType.none
-    }
-    
-    public var textContent: String? {
+    public var text: String? {
         post.text
     }
     
     
+    public var doesContainCustomView: Bool {
+        customViewType != CustomCellType.none
+    }
+    
+    
     public var isTextContentEmpty: Bool {
-        textContent?.isEmpty ?? true
+        text?.isEmpty ?? true
+    }
+    
+    
+    public var customViewType: CustomCellType {
+        post.cellType
     }
     
     
@@ -40,12 +45,32 @@ final class PostViewModel: NSObject {
     }
     
     
-    init(post model: Post) {
+    var comments: [Comment]!
+    var newestCommentDocument: QueryDocumentSnapshot?
+    var oldestCommentDocument: QueryDocumentSnapshot?
+    
+    
+    init(post model: PostModelType) {
         post = model
         if let repost = model.repost {
             rePostViewModel = PostViewModel(post: repost)
         }
-        super.init()
+    }
+    
+    
+    public func fetchNewerCommentBatch()  {
+        
+    }
+    
+    
+    public func fetchInitialCommentBatch() {
+        
+    }
+    
+    
+    public func fetchNextCommentBatch() {
+    
+    
     }
     
 }

@@ -5,27 +5,29 @@
 //  Created by Kristopher Jackson on 12/18/21.
 //
 
+import FirebaseStorage
 import FirebaseFirestore
 import Tagged
 
-class Post {
+class Post: PostModelType {
     
-    let id: ID!
-    let userID: User.ID!
-    let firstName: String!
-    let lastName: String!
-    let username: String!
-    let groupID: Group.ID!
-    let priority: Int!
-    let timestamp: Date!
-    let text: String?
-    let cellType: CustomCellType!
+    var id: ID
+    var userID: User.ID
+    var firstName: String
+    var lastName: String
+    var username: User.Username
+    var profileImage: User.ImageJPGName
+    var groupID: Group.ID
+    var priority: Int
+    var timestamp: Date
+    var text: String?
+    var cellType: CustomCellType
     
     var numOfLikes: Int = 0
     var numOfReposts: Int = 0
     var numOfComments: Int = 0
     
-    let repost: Post?
+    var repost: PostModelType?
     
     var reference: DocumentReference {
         return DatabaseService
@@ -35,24 +37,28 @@ class Post {
             .document(id.rawValue)
     }
     
-    var likesCollection: CollectionReference {
+    var referenceToProfileImage: StorageReference {
+        return StorageService.reference(.users).child(profileImage + ".jpg")
+    }
+    
+    var collectionOfLikes: CollectionReference {
         return reference.collection(.likes)
     }
     
-    var repostsCollection: CollectionReference {
+    var collectionOfReposts: CollectionReference {
         return reference.collection(.reposts)
     }
     
-    var commentsCollection: CollectionReference {
+    var collectionOfComments: CollectionReference {
         return reference.collection(.comments)
     }
     
-    var repostedReference: DocumentReference? {
+    var referenceToRepost: DocumentReference? {
         guard let postID = repost?.id.rawValue, let groupID = repost?.groupID.rawValue else { return nil }
         return DatabaseService.collection(.groups).document(groupID).collection(.posts).document(postID)
     }
     
-    var userReference: DocumentReference {
+    var referenceToUser: DocumentReference {
         return DatabaseService.collection(.users).document(userID.rawValue)
     }
     
@@ -72,7 +78,7 @@ class Post {
             .numOfReposts: numOfReposts,
             .numOfComments: numOfComments
         ]
-        repost?.asRepostDictionary.forEach({ dict[$0] = $1 })
+        repost?.asDictionaryForRepost.forEach({ dict[$0] = $1 })
         return dict
     }
     
@@ -82,7 +88,7 @@ class Post {
         return dict
     }
     
-    var asRepostDictionary: [DatabaseKeys.Post: Any?] {
+    var asDictionaryForRepost: [DatabaseKeys.Post: Any?] {
         [
             .repostID: id.rawValue,
             .repostText: text,
@@ -102,6 +108,7 @@ class Post {
         firstName: String,
         lastName: String,
         username: String,
+        profileImage: String,
         groupID: String,
         priority: Int,
         timestamp: Date,
@@ -111,7 +118,7 @@ class Post {
         numOfReposts: Int = 0,
         numOfComments: Int = 0,
         
-        repost: Post? = nil
+        repost: PostModelType? = nil
         
     ) {
         
@@ -119,7 +126,8 @@ class Post {
         self.userID = User.ID(rawValue: userID)
         self.firstName = firstName
         self.lastName = lastName
-        self.username = username
+        self.username = User.Username(rawValue: username)
+        self.profileImage = User.ImageJPGName(rawValue: profileImage)
         self.groupID = Group.ID(rawValue: groupID)
         self.priority = priority
         self.timestamp = timestamp
@@ -137,7 +145,8 @@ class Post {
         userID = User.ID(rawValue: data[DatabaseKeys.Post.userID.rawValue] as? String ?? "")
         firstName = data[DatabaseKeys.Post.firstName.rawValue] as? String ?? ""
         lastName = data[DatabaseKeys.Post.lastName.rawValue] as? String ?? ""
-        username = data[DatabaseKeys.Post.username.rawValue] as? String ?? ""
+        username = User.Username(rawValue: data[DatabaseKeys.Post.username.rawValue] as? String ?? "")
+        profileImage = User.ImageJPGName(rawValue: data[DatabaseKeys.Post.profileImage.rawValue] as? String ?? "")
         groupID = Group.ID(rawValue: data[DatabaseKeys.Post.groupID.rawValue] as? String ?? "")
         text = data[DatabaseKeys.Post.text.rawValue] as? String
         priority = data[DatabaseKeys.Post.priority.rawValue] as? Int ?? 0
@@ -159,20 +168,12 @@ class Post {
         userID = User.ID(rawValue: data[DatabaseKeys.Post.repostUserID.rawValue] as? String ?? "")
         firstName = data[DatabaseKeys.Post.repostFirstName.rawValue] as? String ?? ""
         lastName = data[DatabaseKeys.Post.repostLastName.rawValue] as? String ?? ""
-        username = data[DatabaseKeys.Post.repostUsername.rawValue] as? String ?? ""
+        username = User.Username(rawValue: data[DatabaseKeys.Post.repostUsername.rawValue] as? String ?? "")
+        profileImage = User.ImageJPGName(rawValue: data[DatabaseKeys.Post.profileImage.rawValue] as? String ?? "")
         groupID = Group.ID(rawValue: data[DatabaseKeys.Post.repostGroupID.rawValue] as? String ?? "")
         text = data[DatabaseKeys.Post.repostText.rawValue] as? String
         timestamp = (data[DatabaseKeys.Post.repostTimestamp.rawValue] as? Timestamp)?.dateValue() ?? Date()
         cellType = CustomCellType(rawValue: data[DatabaseKeys.Post.repostCellType.rawValue] as? Int ?? 0) ?? CustomCellType.none
     }
-    
-}
-
-// MARK: - Typealias
-
-extension Post {
-    
-    typealias ID = Tagged<Post, String>
-    typealias Priority = Tagged<(Post, priority: ()), Int>
     
 }

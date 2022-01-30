@@ -13,9 +13,9 @@ final class ShareViewModel {
     public var headerViewModel: PostHeaderViewModel!
     public var footerViewModel: EngagementBannerViewModel!
     
-    private var post: Post!
+    private var post: PostModelType!
     
-    init(post model: Post, postViewModel: PostViewModel) {
+    init(post model: PostModelType, postViewModel: PostViewModelType) {
         post = model
         headerViewModel = PostHeaderViewModel(post: model)
         footerViewModel = EngagementBannerViewModel(post: model, postViewModel: postViewModel)

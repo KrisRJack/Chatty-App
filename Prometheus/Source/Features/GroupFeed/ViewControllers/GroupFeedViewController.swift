@@ -11,7 +11,7 @@ import UIKit
 protocol GroupFeedNavigationDelegate {
     func goToMyGroups()
     func goToGroupDetails()
-    func goToPostDetails(with viewModel: PostViewModel)
+    func goToPostDetails(with viewModel: PostViewModelType)
     func presentErrorMessage(error: String)
 }
 
@@ -146,7 +146,7 @@ final class GroupFeedViewController: UITableViewController {
 
 extension GroupFeedViewController: PostViewDelegate {
     
-    func didTap(for viewModel: PostViewModel) {
+    func didTap(for viewModel: PostViewModelType) {
         navigationDelegate?.goToPostDetails(with: viewModel)
     }
     

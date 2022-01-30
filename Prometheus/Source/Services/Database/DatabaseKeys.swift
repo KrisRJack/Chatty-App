@@ -61,6 +61,7 @@ public struct DatabaseKeys {
         case firstName = "firstName"
         case lastName = "lastName"
         case username = "username"
+        case profileImage = "profileImage"
         case groupID = "groupID"
         case priority = "priority"
         case timestamp = "timestamp"

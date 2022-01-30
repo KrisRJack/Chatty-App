@@ -63,7 +63,6 @@ final class GroupFeedViewModel: NSObject {
                 
                 self.cellViewModels = snapshot.documents.map ({ document in
                     let viewModel = PostViewModel(post: Post(withData: document.data()))
-                    viewModel.reloadAt = self.reloadAt
                     return viewModel
                 })
                 
